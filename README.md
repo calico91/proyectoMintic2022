@@ -1,0 +1,1 @@
+# proyectoMintic2022
