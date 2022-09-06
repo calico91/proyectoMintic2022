@@ -7,7 +7,7 @@ class Empresa (models.Model):
     ciudad=models.CharField(max_length=30);
     direccion=models.CharField(max_length=30);
     telefono=models.CharField(max_length=30);
-    sector_productivo=models.CharField(max_length=30);
+    sector_productivo=models.CharField(max_length=31);
     fecha_creacion=models.DateField(max_length=30);
 
 class Usuarios(models.Model):
