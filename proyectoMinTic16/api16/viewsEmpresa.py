@@ -24,13 +24,13 @@ class EmpresaViews(View):
         if id_empr>0:
             empresa=list(Empresa.objects.filter(id_empresa=id_empr).values())
             if len(empresa)>0:
-                empresares=empresa[0]
-                datos={"Empresa":empresares}
+                empresarespuesta=empresa[0]
+                datos={"Empresa":empresarespuesta}
             else:
                 datos={"Respuesta":"Dato no encontrado"}
         else:
             empresa=list(Empresa.objects.values())
-            datos={'listadoempresa':empresa}
+            datos={'listado empresa':empresa}
         return JsonResponse(datos)
 
     
@@ -39,8 +39,8 @@ class EmpresaViews(View):
         datos=json.loads(request.body)
         Empresa.objects.create(id_empresa=datos["id_empresa"],nombre=datos["nombre"],
         nit=datos["nit"],ciudad=datos["ciudad"],direccion=datos["direccion"],
-        telefono=datos["telefono"],sector_productivo=datos["sector_productivo"],
-        fecha_creacion=datos["fecha_creacion"])
+        telefono=datos["telefono"],sector_productivo=datos["sector_productivo"])
+        #fecha_creacion=datos["fecha_creacion"]
         return JsonResponse(datos)
 
     def put(self,request,id_empr):#metodo para actualizar datos 
@@ -54,7 +54,7 @@ class EmpresaViews(View):
             emp.direccion=datos['direccion']
             emp.telefono=datos['telefono']
             emp.sector_productivo=datos['sector_productivo']
-            emp.fecha_creacion=datos['fecha_creacion']
+            #emp.fecha_creacion=datos['fecha_creacion']
             emp.save()
             mensaje={"Respuesta":"Datos Actualizados"}
         else:
@@ -65,7 +65,10 @@ class EmpresaViews(View):
         empresa=list(Empresa.objects.filter(id_empresa=id_empr).values())
         if len(empresa)>0:
             Empresa.objects.filter(id_empresa=id_empr).delete()
-            mensaje={"Respuesta":"El registro se elimino"}
+            
+            mensaje={"Empresas Eliminadas":len(empresa),
+                     "Id empresa":empresa[0].get('id_empresa','nombre'),
+                     "Nombre empresa":empresa[0].get('nombre')}
         else:
             mensaje={"Respuesta":"Dato no encontrado"}
         return JsonResponse(mensaje)
