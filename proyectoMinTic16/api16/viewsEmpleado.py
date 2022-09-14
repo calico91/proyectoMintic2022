@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.views import View
-from .models import Empleados
+from .models import Empleados, Usuarios, Empresa
 from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -37,19 +37,24 @@ class EmpleadosViews(View):
 
     def post(self, request):  # metodo para enviar los datos por medio de post
         datos = json.loads(request.body)
-        Empleados.objects.create(id_empleado=datos["id_empleado"], 
+        idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
+        idEmpresa=Empresa.objects.get(id_empresa=datos["id_empresa"])
+        crear=Empleados.objects.create(id_empleado=datos["id_empleado"], 
                                  nombre=datos["nombre"], 
                                  apellidos=datos["apellidos"],
                                  email=datos["email"], 
                                  telefono=datos["telefono"], 
                                  empresa=datos["empresa"], 
-                                 id_usuarios=datos["id_usuarios"], 
-                                 id_empresa=datos["id_empresa"])
+                                 id_usuarios=idUsuario, 
+                                 id_empresa=idEmpresa)
+        crear.save();
         # fecha_creacion=datos["fecha_creacion"]
         return JsonResponse(datos)
 
     def put(self, request, id_empleado):  # metodo para actualizar datos
         datos = json.loads(request.body)
+        idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
+        idEmpresa=Empresa.objects.get(id_empresa=datos["id_empresa"])
         empleado = list(Empleados.objects.filter(
             id_empleado=id_empleado).values())
         if len(empleado) > 0:
@@ -59,8 +64,8 @@ class EmpleadosViews(View):
             empl.email = datos['email']
             empl.telefono = datos['telefono']
             empl.empresa = datos['empresa']
-            empl.id_usuarios = datos['id_usuarios']
-            empl.id_empresa = datos['id_empresa']
+            empl.id_usuarios=idUsuario
+            empl.id_empresa=idEmpresa
 
             # emp.fecha_creacion=datos['fecha_creacion']
             empl.save()
