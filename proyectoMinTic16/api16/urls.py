@@ -13,7 +13,4 @@ urlpatterns=[#se crea este archivo para dar rutas
 
     path('empleado/',EmpleadosViews.as_view(), name="listar"),
     path('empleado/<int:id_empleado>',EmpleadosViews.as_view(), name="actualizar")
-
-    
-
 ]
