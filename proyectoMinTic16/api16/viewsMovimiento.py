@@ -10,9 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 class MovimientosViews(View):
 
     # codigo para un tema de seguridad y cookies
-    # @method_decorator(csrf_exempt)
-    # def dispatch(self,request,args,*kwargs):
-    #     return super().dispatch(request,args,**kwargs)
+    @method_decorator(csrf_exempt)
+    def dispatch(self,request,*args,**kwargs):
+        return super().dispatch(request,*args,**kwargs)
 
     # def get(self,request): #metodo para consultar get para traer los datos en un json
     #     empresa=list(Empresa.objects.values())
