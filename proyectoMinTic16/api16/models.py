@@ -1,5 +1,7 @@
 from pickle import TRUE
+from random import choices
 from django.db import models
+
 
 class Empresa (models.Model):
     id_empresa=models.IntegerField(primary_key=True);
@@ -43,10 +45,10 @@ class Empleados (models.Model):
 
 class Movimientos (models.Model):#entidad pendiente por completar 
     id_movimientos=models.IntegerField(primary_key=True);
+    fecha_creacion=models.DateField(auto_now_add=True,null=True);
     concepto=models.CharField(max_length=50, null=True);
     monto=models.FloatField(max_length=10, null=True);
-    tipo=models.CharField(max_length=30, null=True);
-    fecha_creacion=models.DateField(auto_now_add=True,null=True);
     id_usuarios=models.ForeignKey(Usuarios, on_delete=models.CASCADE, null=True);
+    tipo=models.CharField(max_length=30, null=True);
 
 
