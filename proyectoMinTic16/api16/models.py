@@ -1,5 +1,4 @@
 from pickle import TRUE
-from random import choices
 from django.db import models
 
 
@@ -15,7 +14,7 @@ class Empresa (models.Model):
 
     #metodo para mostrar el nombre en el admin de django
     def __str__(self):
-        return self.id_empresa
+        return self.nombre,self.id_empresa
 
 class Usuarios(models.Model):
     id_usuarios=models.IntegerField(primary_key=True);
@@ -27,7 +26,7 @@ class Usuarios(models.Model):
     fecha_creacion=models.DateField(auto_now_add=True,null=True);
 
     def __str__(self):
-        return self.id_usuarios
+        return self.nombre_usuario
 
 class Empleados (models.Model):
     id_empleado=models.IntegerField(primary_key=True);
@@ -50,5 +49,8 @@ class Movimientos (models.Model):#entidad pendiente por completar
     monto=models.FloatField(max_length=10, null=True);
     id_usuarios=models.ForeignKey(Usuarios, on_delete=models.CASCADE, null=True);
     tipo=models.CharField(max_length=30, null=True);
+
+    def __int__(self):
+        return self.id_movimientos,self.id_usuarios
 
 
