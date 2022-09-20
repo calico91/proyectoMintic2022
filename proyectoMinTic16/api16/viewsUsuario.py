@@ -1,4 +1,5 @@
 import email
+from email import message
 import json
 from sqlite3 import DateFromTicks
 from django.shortcuts import render
@@ -63,3 +64,35 @@ class UsuarioViews(View):
         else:
             mensaje={"Respuesta":"Dato no encontrado"}
         return JsonResponse(mensaje)        
+
+    #metodo para loguear usuarios
+    def login(request):
+
+        if request.method=='POST':
+
+            try:
+
+                detalleUsuario=Usuarios.objects.get(
+                    nombre_usuario=request.POST['nombre_usuario'],
+                    password=request.POST['password'])
+                
+
+                if detalleUsuario.rol=="administrador":
+                    request.session['nombre_usuario']=detalleUsuario.nombre_usuario
+                    return render(request,'admin.html')
+
+                elif detalleUsuario.rol=="empleado":
+                    request.session['nombre_usuario']=detalleUsuario.nombre_usuario
+                    return render(request,'empleado.html')
+
+                elif detalleUsuario.rol=="cliente":
+                    request.session['nombre_usuario']=detalleUsuario.nombre_usuario
+                    return render(request,'cliente.html')
+            
+            except Usuarios.DoesNotExist as e:
+                message.success(request,"usuario o contraseña incorrecta")
+                
+        return render(request,'login.html')
+
+
+            
