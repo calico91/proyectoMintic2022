@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/consulta.css" %}'>
+    <title>Document</title>
+</head>
+    <section class="sectiontres">
+        <div class="titulo">Clientes</div>
+        <table class="tabla">
+        <thead>
+        <tr>
+            <th>Documento</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Celular</th>
+        
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in listadoUsuario %}
+            <tr>
+            <td>{{i.id_usuarios}}</td> 
+            <td>{{i.email}}</td>
+            <td>{{i.imagen}}</td>
+            <td>{{i.nombre_usuario}}</td>
+            <td>{{i.password}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    </section>
+</body>
+</html>

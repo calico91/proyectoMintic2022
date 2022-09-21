@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% load static%}
     <meta charset="utf-8">
     <title>Login Mintic</title>
-    <link rel="stylesheet" href="/styles/login.css">
+    <link rel="stylesheet" href='{% static "../static/styles/Login.css" %}'>
   </head>
   <body>
-
+ 
     <div class="login-box">
-      <img src="img/logoMinTic.jpg" class="avatar" alt="Avatar Image">
+      <img src='{% static "../static/img/logoMinTic.jpg"%}' class="avatar" alt="Avatar Image">
       <h1 hidden>Login</h1>
       <form action="" method="post">
         {%csrf_token%}

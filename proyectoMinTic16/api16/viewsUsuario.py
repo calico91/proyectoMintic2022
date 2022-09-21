@@ -2,7 +2,7 @@ import email
 from email import message
 import json
 from sqlite3 import DateFromTicks
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import  Usuarios
 from django.http.response import JsonResponse
@@ -24,19 +24,20 @@ class UsuarioViews(View):
             else:
                 datos={"Respuesta":"Dato no encontrado"}
         else:
-            usuario=list(Usuarios.objects.values())
-            datos={'listado usuario':usuario}
-        return JsonResponse(datos)
+            templeteName="consultarCliente.html"
+            usuario=Usuarios.objects.all()
+            datos={'listadoUsuario':usuario}
+        return render(request,templeteName,datos)
 
     def post(self,request):
-        datos=json.loads(request.body)
-        Usuarios.objects.create(id_usuarios=datos["id_usuarios"],
-                                email=datos["email"],
-                                imagen=datos["imagen"],
-                                nombre_usuario=datos["nombre_usuario"],
-                                password=datos["password"],
-                                rol=datos["rol"])
-        return JsonResponse(datos)
+
+        Usuarios.objects.create(id_usuarios=request.POST["id_usuarios"],
+                                email=request.POST["email"],
+                                imagen=request.POST["imagen"],
+                                nombre_usuario=request.POST["nombre_usuario"],
+                                password=request.POST["password"],
+                                rol=request.POST["rol"])
+        return redirect('/usuario/')
 
     def put (self,request,id_usua):
         dato=json.loads(request.body)
@@ -93,6 +94,10 @@ class UsuarioViews(View):
                 message.success(request,"usuario o contraseña incorrecta")
                 
         return render(request,'login.html')
+
+
+    def formularioRegistro(request):
+        return render(request,"registroUsuario.html")
 
 
             

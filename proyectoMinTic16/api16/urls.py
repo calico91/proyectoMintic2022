@@ -18,5 +18,6 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('movimientos/',MovimientosViews.as_view(), name="listar"),
     path('movimientos/<int:id_movimiento>',MovimientosViews.as_view(), name="actualizar"),
 
-    path('login/',UsuarioViews.login, name="login usuario")
+    path('login/',UsuarioViews.login, name="login usuario"),
+    path('formularioRegistro/',UsuarioViews.formularioRegistro, name="Ingresar Usuario")
 ]

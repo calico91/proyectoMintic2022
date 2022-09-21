@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Registro Usuarios</title>
+</head>
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+       <form action="/usuario/" method="POST" class="frm">
+         <legend>Ingreso Usuarios</legend>
+
+         <label for="doc" >id_usuario
+           <input type="text" id="doc" name="id_usuarios">
+         </label>
+
+         <label for="nombre">email
+           <input type="text" id="nombre" name="email">
+         </label>
+
+         <label for="apellido">imagen
+           <input type="text" id="apellido" name="imagen">
+         </label>
+
+         <label for="correo">nombre usuario
+           <input type="text" id="correo" name="nombre_usuario">
+        
+        <label for="correo">password
+        <input type="text" id="correo" name="password">
+
+        <label for="correo">rol
+            <input type="text" id="correo" name="rol">
+
+         </label>
+
+         <input type="submit" value="registrar" class="button">
+       </form>
+    
+        </fieldset>
+</body>
+</html>
+
+
+
+
+
+

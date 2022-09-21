@@ -1,0 +1,64 @@
+.fieldset{
+    background-color: gray;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    padding: 30px;
+}
+
+legend{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.frm{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+[type='text']{
+    display: block;
+    width: 98%;
+    height: 25px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+[type='email']{
+    display: block;
+    width: 98%;
+    height: 25px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.estcivil{
+    display: block;
+}
+
+
+
+[type='date']{
+    display: block;
+    width: 50%;
+}
+
+label{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fecha{
+    display: block;
+}
+
+[type='submit']{
+    margin-top: 30px;
+    width: 120px;
+    height: 20px;
+}
