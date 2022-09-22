@@ -13,11 +13,14 @@
         <table class="tabla">
         <thead>
         <tr>
-            <th>Documento</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th>Celular</th>
+            <th>ID Usuario</th>
+            <th>Email</th>
+            <th>Imagen</th>
+            <th>Nombre Usuario</th>
+            <th>Contraseña</th>
+            <th>Rol</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
         
         </tr>
         </thead>
@@ -29,6 +32,10 @@
             <td>{{i.imagen}}</td>
             <td>{{i.nombre_usuario}}</td>
             <td>{{i.password}}</td>
+            <td>{{i.rol}}</td>
+            <td><a href="/actualizarUsuario/{{i.id_usuarios}}">Actualizar</a></td>
+            <td><a href="/eliminarCliente/{{i.id_usuarios}}">Eliminar</a></td>
+
             </tr>
             {% endfor %}
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Registro Usuarios</title>
+</head>
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+       <form action="/actualizarUsuario/" method="POST" class="frm">
+        {%csrf_token%}
+         <legend>Ingreso Usuarios</legend>
+
+
+           <input type="hidden" id="doc" name="id_usuarios" value="{{usuarios.id_usuarios}}" readonly>
+
+         <label for="nombre">email
+           <input type="text" id="nombre" name="email" value="{{usuarios.email}}">
+         </label>
+
+         <label for="imagen">imagen
+           <input type="text" id="imagen" name="imagen" value="{{usuarios.imagen}}">
+         </label>
+
+         <label for="nombre_usuario">nombre usuario
+           <input type="text" id="nombre_usuario" name="nombre_usuario" value="{{usuarios.nombre_usuario}}">
+        
+        <label for="password">password
+        <input type="text" id="password" name="password" value="{{usuarios.password}}">
+
+        <label for="rol">rol
+            <input type="text" id="rol" name="rol" value="{{usuarios.rol}}">
+
+         </label>
+
+         <input type="submit" value="Actualizar" class="button">
+       </form>
+    
+        </fieldset>
+</body>
+</html>
+
+
+
+
+
+

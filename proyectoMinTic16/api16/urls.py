@@ -9,15 +9,22 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('empresa/',EmpresaViews.as_view(), name="listar"),
     path('empresa/<int:id_empr>',EmpresaViews.as_view(), name="actualizar"),
 
-    path('usuario/',UsuarioViews.as_view(), name="listar"),
-    path('usuario/<int:id_usua>',UsuarioViews.as_view(), name="actualizar"),
-
     path('empleado/',EmpleadosViews.as_view(), name="listar"),
     path('empleado/<int:id_empleado>',EmpleadosViews.as_view(), name="actualizar"),
 
     path('movimientos/',MovimientosViews.as_view(), name="listar"),
     path('movimientos/<int:id_movimiento>',MovimientosViews.as_view(), name="actualizar"),
 
+    #usuarios
+    path('usuario/',UsuarioViews.as_view(), name="listar"),
+    path('usuario/<int:id_usua>',UsuarioViews.as_view(), name="actualizar"),
+
     path('login/',UsuarioViews.login, name="login usuario"),
-    path('formularioRegistro/',UsuarioViews.formularioRegistro, name="Ingresar Usuario")
+    path('formularioRegistro/',UsuarioViews.formularioRegistro, 
+            name="Ingresar Usuario"),
+
+    path('actualizarUsuario/<int:id_usuarios>',UsuarioViews.formularioActualizar, 
+            name="Formulario Actualizar"),
+    path('actualizarUsuario/',UsuarioViews.actualizar, name="Actualizar")
+
 ]

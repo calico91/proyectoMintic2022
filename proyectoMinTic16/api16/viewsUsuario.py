@@ -91,13 +91,45 @@ class UsuarioViews(View):
                     return render(request,'cliente.html')
             
             except Usuarios.DoesNotExist as e:
-                message.success(request,"usuario o contraseña incorrecta")
+                 return render(request,'login.html')
+                #message.success(request,"usuario o contraseña incorrecta")
+                
                 
         return render(request,'login.html')
 
-
+    #metodo para cargar el formulario
     def formularioRegistro(request):
         return render(request,"registroUsuario.html")
+
+    # metodo para cargar datos que se desean actualizar al formulario 
+    def formularioActualizar(request,id_usuarios):
+        usuarios=Usuarios.objects.get(id_usuarios=id_usuarios)
+        datos={
+            'usuarios':usuarios
+        }
+
+        return render(request,"actualizarUsuario.html",datos)
+
+
+    def actualizar(request):
+        id_usuarios=request.POST['id_usuarios']
+        email=request.POST['email']
+        imagen=request.POST['imagen']
+        nombre_usuario=request.POST['nombre_usuario']
+        password=request.POST['password']
+        rol=request.POST['rol']
+
+        usuarios=Usuarios.objects.get(id_usuarios=id_usuarios)
+        #id_usuarios=usuarios
+        usuarios.email=email
+        usuarios.imagen=imagen
+        usuarios.nombre_usuario=nombre_usuario
+        usuarios.password=password
+        usuarios.rol=rol
+        usuarios.save()
+        return redirect ('/usuario/')
+
+
 
 
             
