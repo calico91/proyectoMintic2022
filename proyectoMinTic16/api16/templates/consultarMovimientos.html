@@ -9,31 +9,29 @@
     <title>Document</title>
 </head>
     <section class="sectiontres">
-        <div class="titulo">Usuarios</div>
+        <div class="titulo">Movimientos</div>
         <table class="tabla">
         <thead>
         <tr>
-            <th>ID Usuario</th>
-            <th>Email</th>
-            <th hidden>Imagen</th>
-            <th>Nombre Usuario</th>
-            <th>Contraseña</th>
-            <th>Rol</th>
-            <th>Fecha creacion</th>
+            <th>ID Movimiento</th>
+            <th>concepto</th>
+            <th>monto</th>
+            <th>tipo</th>
+            <th>ID usuario</th>
+            <th >Fecha Creacion</th>
             <th>Actualizar</th>
             <th>Eliminar</th>
         
         </tr>
         </thead>
         <tbody>
-            {% for i in listadoUsuario %}
+            {% for i in listadoMovimientos %}
             <tr>
-            <td>{{i.id_usuarios}}</td> 
-            <td>{{i.email}}</td>
-            <td hidden>{{i.imagen}}</td>
-            <td>{{i.nombre_usuario}}</td>
-            <td>{{i.password}}</td>
-            <td>{{i.rol}}</td>
+            <td>{{i.id_movimientos}}</td> 
+            <td>{{i.concepto}}</td>
+            <td>{{i.monto}}</td>
+            <td>{{i.tipo}}</td>
+            <td>{{i.id_usuarios}}</td>
             <td>{{i.fecha_creacion}}</td>
             <td><a href="/actualizarUsuario/{{i.id_usuarios}}">Actualizar</a></td>
             <td><a href="/eliminarCliente/{{i.id_usuarios}}">Eliminar</a></td>

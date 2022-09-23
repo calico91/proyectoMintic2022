@@ -21,6 +21,7 @@ class MovimientosViews(View):
 
     # metodo para consultar por el ID, si no envio ningun parametro hace la consulta
     # general
+
     def get(self, request, id_movimiento=0):
         if id_movimiento > 0:
             movimientos = list(Movimientos.objects.filter(
@@ -31,14 +32,15 @@ class MovimientosViews(View):
             else:
                 datos = {"Respuesta": "Dato no encontrado"}
         else:
-            movimientos = list(Movimientos.objects.values())
-            datos = {'listado movimientos': movimientos}
-        return JsonResponse(datos)
+            templeteName="consultarMovimientos.html"
+            movimientos = Movimientos.objects.all()
+            datos = {'listadoMovimientos': movimientos}
+        return render(request,templeteName,datos)
 
     def post(self, request):  # metodo para enviar los datos por medio de post
         datos = json.loads(request.body)
         idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
-        crear=Movimientos.objects.create(id_movimientos=datos["id_movimientos"], 
+        crear=Movimientos.objects.create( 
                                  concepto=datos["concepto"], 
                                  monto=datos["monto"],
                                  tipo=datos["tipo"], 
@@ -77,3 +79,7 @@ class MovimientosViews(View):
         else:
             mensaje = {"Respuesta": "Dato no encontrado"}
         return JsonResponse(mensaje)
+
+    #carga vista de formulario
+    def formularioRegistroformularioRegistroMovimientos(request):
+        return render(request,"registroMovimientos.html")

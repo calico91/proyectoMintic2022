@@ -19,7 +19,7 @@ class Empresa (models.Model):
 class Usuarios(models.Model):
     id_usuarios=models.IntegerField(primary_key=True);
     email=models.CharField(max_length=30,unique=True);
-    imagen=models.CharField(max_length=30);
+    imagen=models.CharField(max_length=30, null=True);
     nombre_usuario=models.CharField(max_length=30,unique=True);
     password=models.CharField(max_length=30);
     rol=models.CharField(max_length=30);
@@ -43,7 +43,7 @@ class Empleados (models.Model):
         return self.nombre
 
 class Movimientos (models.Model):#entidad pendiente por completar 
-    id_movimientos=models.IntegerField(primary_key=True);
+    id_movimientos=models.AutoField(primary_key=True);
     fecha_creacion=models.DateField(auto_now_add=True,null=True);
     concepto=models.CharField(max_length=50, null=True);
     monto=models.FloatField(max_length=10, null=True);

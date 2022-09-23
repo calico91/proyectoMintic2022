@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Registro Usuarios</title>
+</head>
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+       <form action="/usuario/" method="POST" class="frm">
+         <legend>Ingreso Usuarios</legend>
+
+           <input type="hidden" id="id_movimientos" name="id_movimientos">
+         </label>
+
+         <label>Concepto
+           <input type="text" id="nombre" name="concepto">
+         </label>
+
+         <label>Monto
+           <input type="text" id="monto" name="monto">
+         </label>
+
+         <label>Tipo Movimiento
+           <input type="text" id="tipo" name="tipo">
+           <input type="text" id="id_usuario" value="{{request.session.id_usuario}}">
+
+         <input type="submit" value="registrar" class="button">
+       </form>
+    
+        </fieldset>
+</body>
+</html>
+
+
+
+
+
+

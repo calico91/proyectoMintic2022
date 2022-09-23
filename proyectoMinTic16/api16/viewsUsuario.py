@@ -15,29 +15,7 @@ class UsuarioViews(View):
     def dispatch(self,request,*args,**kwargs):
         return super().dispatch(request,*args,**kwargs)
 
-    def get (self,request, id_usua=0):
-        if id_usua>0:
-            usuario=list(Usuarios.objects.filter(id_usuarios=id_usua).values())
-            if len(usuario)>0:
-                usuariorespuesta=usuario[0]
-                datos={"Usuarios":usuariorespuesta}
-            else:
-                datos={"Respuesta":"Dato no encontrado"}
-        else:
-            templeteName="consultarCliente.html"
-            usuario=Usuarios.objects.all()
-            datos={'listadoUsuario':usuario}
-        return render(request,templeteName,datos)
-
-    def post(self,request):
-
-        Usuarios.objects.create(id_usuarios=request.POST["id_usuarios"],
-                                email=request.POST["email"],
-                                imagen=request.POST["imagen"],
-                                nombre_usuario=request.POST["nombre_usuario"],
-                                password=request.POST["password"],
-                                rol=request.POST["rol"])
-        return redirect('/usuario/')
+    
 
     def put (self,request,id_usua):
         dato=json.loads(request.body)
@@ -66,6 +44,38 @@ class UsuarioViews(View):
             mensaje={"Respuesta":"Dato no encontrado"}
         return JsonResponse(mensaje)        
 
+
+    #metodo para consultar 
+    def get (self,request, id_usua=0):
+        if id_usua>0:
+            usuario=list(Usuarios.objects.filter(id_usuarios=id_usua).values())
+            if len(usuario)>0:
+                usuariorespuesta=usuario[0]
+                datos={"Usuarios":usuariorespuesta}
+            else:
+                datos={"Respuesta":"Dato no encontrado"}
+        else:
+            templeteName="consultarCliente.html"
+            usuario=Usuarios.objects.all()
+            datos={'listadoUsuario':usuario}
+        return render(request,templeteName,datos)
+
+     #metodo para cargar el formulario de registro
+    def formularioRegistro(request):
+        return render(request,"registroUsuario.html")
+
+    #metodo para ingresar 
+    def post(self,request):
+
+            Usuarios.objects.create(id_usuarios=request.POST["id_usuarios"],
+                                    email=request.POST["email"],
+                                    imagen=request.POST["imagen"],
+                                    nombre_usuario=request.POST["nombre_usuario"],
+                                    password=request.POST["password"],
+                                    rol=request.POST["rol"])
+
+            return redirect('/usuario/')
+
     #metodo para loguear usuarios
     def login(request):
 
@@ -85,10 +95,6 @@ class UsuarioViews(View):
                 elif detalleUsuario.rol=="empleado":
                     request.session['nombre_usuario']=detalleUsuario.nombre_usuario
                     return render(request,'empleado.html')
-
-                elif detalleUsuario.rol=="cliente":
-                    request.session['nombre_usuario']=detalleUsuario.nombre_usuario
-                    return render(request,'cliente.html')
             
             except Usuarios.DoesNotExist as e:
                  return render(request,'login.html')
@@ -96,10 +102,6 @@ class UsuarioViews(View):
                 
                 
         return render(request,'login.html')
-
-    #metodo para cargar el formulario
-    def formularioRegistro(request):
-        return render(request,"registroUsuario.html")
 
     # metodo para cargar datos que se desean actualizar al formulario 
     def formularioActualizar(request,id_usuarios):
