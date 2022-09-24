@@ -24,6 +24,9 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('formularioRegistro/',UsuarioViews.formularioRegistro, 
             name="Ingresar Usuario"),
 
+    path('formularioRegistroEmpresa/',EmpresaViews.formularioRegistroEmpresa, 
+            name="Ingresar Empresa"),    
+
     path('actualizarUsuario/<int:id_usuarios>',UsuarioViews.formularioActualizar, 
             name="Formulario Actualizar"),
     path('actualizarUsuario/',UsuarioViews.actualizar, name="Actualizar"),

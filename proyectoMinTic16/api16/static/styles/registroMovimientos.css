@@ -1,0 +1,56 @@
+h3{
+    font-family: Calibri; 
+    font-size: 25pt;         
+    font-style: normal; 
+    font-weight: bold; 
+    color:rgb(252, 252, 252);
+    text-align: center; 
+  
+    
+  }
+  
+  table{
+    font-family: Calibri; 
+    color:white; 
+    font-size: 11pt; 
+    font-style: normal;
+    font-weight: bold;
+    background-color: rgba(88, 91, 94, 0.986); 
+    border-collapse: collapse; 
+    border: 2px solid rgb(240, 240, 240)
+  }
+  table.inner{
+    border: 0px
+  }
+  
+  #botones{
+    
+    padding:10px 10px 45px;
+    
+    margin-left: 600px;
+    position: absolute;
+      width: 510px;
+      height: 409px;
+      margin-bottom: 350px;
+  }
+  
+  body{
+    /*background-image: url("./Misión-TIC-2022-Universidad-Sergio-Arboleda.jpg") ;*/
+    /*background-color: rgb(rgb(54, 26, 99), green, blue);*/
+    background-image: linear-gradient(135deg,  #333633  10%,  #856B93 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Open Sans", sans-serif;
+    color: #20201f;
+  }
+
+  #tablaConsulta{
+
+    padding:30px 400px 45px;
+    margin-right: 700px;
+    position: absolute;
+    margin-bottom: 100px;
+    top: 200px;
+  }
+

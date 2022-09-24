@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import  Movimientos, Usuarios 
 from django.http.response import JsonResponse
@@ -19,24 +19,8 @@ class MovimientosViews(View):
     #     datos={'listadoempresa':empresa}
     #     return JsonResponse(datos)
 
-    # metodo para consultar por el ID, si no envio ningun parametro hace la consulta
-    # general
-
-    def get(self, request, id_movimiento=0):
-        if id_movimiento > 0:
-            movimientos = list(Movimientos.objects.filter(
-                id_movimientos=id_movimiento).values())
-            if len(movimientos) > 0:
-                movimientoRespuesta = movimientos[0]
-                datos = {"Movimientos": movimientoRespuesta}
-            else:
-                datos = {"Respuesta": "Dato no encontrado"}
-        else:
-            templeteName="consultarMovimientos.html"
-            movimientos = Movimientos.objects.all()
-            datos = {'listadoMovimientos': movimientos}
-        return render(request,templeteName,datos)
-
+    
+    
     def post(self, request):  # metodo para enviar los datos por medio de post
         datos = json.loads(request.body)
         idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
@@ -80,6 +64,34 @@ class MovimientosViews(View):
             mensaje = {"Respuesta": "Dato no encontrado"}
         return JsonResponse(mensaje)
 
+    # metodo para consultar por el ID, si no envio ningun parametro hace la consulta
+    # general
+
+    def get(self, request, id_movimiento=0):
+        if id_movimiento > 0:
+            movimientos = list(Movimientos.objects.filter(
+                id_movimientos=id_movimiento).values())
+            if len(movimientos) > 0:
+                movimientoRespuesta = movimientos[0]
+                datos = {"Movimientos": movimientoRespuesta}
+            else:
+                datos = {"Respuesta": "Dato no encontrado"}
+        else:
+            templeteName="consultarMovimientos.html"
+            movimientos = Movimientos.objects.all()
+            datos = {'listadoMovimientos': movimientos}
+        return render(request,templeteName,datos)
+        
     #carga vista de formulario
     def formularioRegistroformularioRegistroMovimientos(request):
         return render(request,"registroMovimientos.html")
+
+    def post(self, request):  # metodo para enviar los datos por medio de post
+        idUsuario=Usuarios.objects.get(id_usuarios=request.POST["id_usuarios"])
+        Movimientos.objects.create(
+                                concepto=request.POST["concepto"],
+                                monto=request.POST["monto"],
+                                id_usuarios=idUsuario,
+                                tipo=request.POST["tipo"])
+
+        return redirect('/consultarMovimientos/')

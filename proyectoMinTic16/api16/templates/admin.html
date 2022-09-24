@@ -9,12 +9,17 @@
 
     {% if request.session.nombre_usuario %}
     <span>{{request.session.nombre_usuario}}</span>
+    <span>{{request.session.id_usuarios}}</span>
 </head>
 <body>
     <h1>bienvenido señor admin</h1>
-    <a href="/formularioRegistro/">registrar usuario</a>
+    <a href="/formularioRegistro/">registrar Usuario</a>
+    <a href="#">registrar Empledado</a>
+    <a href="/formularioRegistroEmpresa/">registrar Empresa</a>
     <a href="/usuario/">Consultar usuario</a>
-    <a href="">Actualizar Usuario</a>
+    <a href="#">Consultar Empresa</a>
+    <a href="#">Consultar Empleado</a>
+    
 </body>
 {%endif%}
 </html>

@@ -67,14 +67,14 @@ class UsuarioViews(View):
     #metodo para ingresar 
     def post(self,request):
 
-            Usuarios.objects.create(id_usuarios=request.POST["id_usuarios"],
-                                    email=request.POST["email"],
-                                    imagen=request.POST["imagen"],
-                                    nombre_usuario=request.POST["nombre_usuario"],
-                                    password=request.POST["password"],
-                                    rol=request.POST["rol"])
+        Usuarios.objects.create(id_usuarios=request.POST["id_usuarios"],
+                                email=request.POST["email"],
+                                imagen=request.POST["imagen"],
+                                nombre_usuario=request.POST["nombre_usuario"],
+                                password=request.POST["password"],
+                                rol=request.POST["rol"])
 
-            return redirect('/usuario/')
+        return redirect('/usuario/')
 
     #metodo para loguear usuarios
     def login(request):
@@ -85,10 +85,13 @@ class UsuarioViews(View):
 
                 detalleUsuario=Usuarios.objects.get(
                     nombre_usuario=request.POST['nombre_usuario'],
-                    password=request.POST['password'])
+                    password=request.POST['password'],
+                    )
                 
 
                 if detalleUsuario.rol=="administrador":
+                    #Usuarios.objects.all().id_usuarios
+                    request.session['nombre_usuario']=detalleUsuario.id_usuarios
                     request.session['nombre_usuario']=detalleUsuario.nombre_usuario
                     return render(request,'admin.html')
 
@@ -97,7 +100,7 @@ class UsuarioViews(View):
                     return render(request,'empleado.html')
             
             except Usuarios.DoesNotExist as e:
-                 return render(request,'login.html')
+                 return render(request,'loginError.html')
                 #message.success(request,"usuario o contraseña incorrecta")
                 
                 

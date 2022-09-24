@@ -1,43 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    {% load static%}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
-    <title>Registro Usuarios</title>
+  {% load static%}
+  <meta charset="UTF-8">
+  <title>Empleado</title>
+  <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
+">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
 </head>
 <body>
-    <section class="sectiondos">
-        <fieldset class="fieldset">
-       <form action="/usuario/" method="POST" class="frm">
-         <legend>Ingreso Usuarios</legend>
+<!-- partial:index.partial.html -->
+<html>
+<head>
+<title>Empleado</title>
 
-           <input type="hidden" id="id_movimientos" name="id_movimientos">
-         </label>
+</head>
+ 
+<body>
+<h3><strong>Movimietos</strong> </h3>
 
-         <label>Concepto
-           <input type="text" id="nombre" name="concepto">
-         </label>
+ 
+<table align="center" cellpadding = "10">
+ 
 
-         <label>Monto
-           <input type="text" id="monto" name="monto">
-         </label>
+<form action="/movimientos/" method="POST" class="frm">
+  <tr>
+  <td> Concepto</td>
+  <td><input type="text" name="concepto" />
+  <td><select name="tipo">
+    <!-- Opciones de la lista -->
+    <option value="ingreso" >Ingreso</option>
+    <option value="egreso" selected> Egreso</option> <!-- Opción por defecto -->
+  
+  </select>
+  </td>
+  </td>
+  </tr>
+  
+  <!----- Last Name ---------------------------------------------------------->
+  <tr>
+  <td>Valor</td>
+  <td><input type="text" name="monto" />
+  </td>
+  </tr>
 
-         <label>Tipo Movimiento
-           <input type="text" id="tipo" name="tipo">
-           <input type="text" id="id_usuario" value="{{request.session.id_usuario}}">
+  <tr>
+  <td>Id usuario</td>
+  <td><input type="text" name="id_usuarios" />
+  </td>
+  </tr>
+  
 
-         <input type="submit" value="registrar" class="button">
-       </form>
-    
-        </fieldset>
+<table id="tablaConsulta" class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id Movimiento</th>
+      <th scope="col">Fecha Creacion</th>
+      <th scope="col">Concepto</th>
+      <th scope="col">Monto</th>
+      <th scope="col">Id Usuarios</th>
+      <th scope="col">Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@fat</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>@twitter</td>
+      <td>@twitter</td>
+      <tr>
+        <th scope="row">4</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+        <td>@twitter</td>
+        <td>@twitter</td>
+      </tr>
+      
+    </tr>
+  </tbody>
+</table>
+
+
+
+  <div id="botones">
+      <button type="submit" class="btn btn-primary" >Crear</button>
+  <button type="button" class="btn btn-danger">Listar</button>
+  </div>
+
+
+       
+</form>
+     
 </body>
 </html>
-
-
-
-
-
-

@@ -75,3 +75,9 @@ class EmpresaViews(View):
         else:
             mensaje={"Respuesta":"Dato no encontrado"}
         return JsonResponse(mensaje)
+
+    #################################
+
+    #metodo para cargar el formulario de registro
+    def formularioRegistroEmpresa(request):
+        return render(request,"registroEmpresa.html")

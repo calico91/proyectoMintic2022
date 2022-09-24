@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static%}
+    <meta charset="utf-8">
+    <title>Login Mintic</title>
+    <link rel="stylesheet" href='{% static "../static/styles/LoginError.css" %}'>
+  </head>
+  <body>
+ 
+    <div class="login-box">
+      <img src='{% static "../static/img/logoMinTic.jpg"%}' class="avatar" alt="Avatar Image">
+      <h1 hidden>Login</h1>
+      <form action="" method="post">
+        {%csrf_token%}
+        <!-- USERNAME INPUT -->
+        <label for="username">Usuario</label>
+        <input type="text" placeholder="Ingrese Usuario" name="nombre_usuario">
+        <!-- PASSWORD INPUT -->
+        <label for="password">Contraseña</label>
+        <input type="password" placeholder="Ingrese Contraseña" name="password" >
+        <input type="submit" value="Ingresar">
+        <p>Usuario o Contraseña incorrectos</p>
+
+        <a href="#">Olvidaste tu Contraseña?</a><br>
+        <a href="#">No tienes cuenta?</a>
+      </form>
+    </div>
+  </body>
+</html>
