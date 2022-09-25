@@ -7,6 +7,10 @@ from .viewsUsuario import UsuarioViews
 from .viewsMovimiento import MovimientosViews
 
 urlpatterns=[#se crea este archivo para dar rutas 
+
+    #emresa    
+    path('formularioRegistroEmpresa/',
+        EmpresaViews.formularioRegistroEmpresa, name="listar"),
     path('empresa/',EmpresaViews.as_view(), name="listar"),
     path('empresa/<int:id_empr>',EmpresaViews.as_view(), name="actualizar"),
 
@@ -17,7 +21,7 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('movimientos/<int:id_movimiento>',MovimientosViews.as_view(), name="actualizar"),
 
     #usuario Admin 
-    path('usuario/',UsuarioViews.as_view(), name="listar"),
+    path('usuario/',UsuarioViews.as_view(), name="listar Usuarios"),
     path('usuario/<int:id_usua>',UsuarioViews.as_view(), name="actualizar"),
 
     path('',UsuarioViews.login, name="login usuario"),
@@ -34,6 +38,6 @@ urlpatterns=[#se crea este archivo para dar rutas
     #usuario empleado
     path('consultarMovimientos/',MovimientosViews.as_view(), name="listar"),
     path('formularioRegistroMovimientos/',
-        MovimientosViews.formularioRegistroformularioRegistroMovimientos, name ='Ingrear Movimientos'),
+        MovimientosViews.formularioRegistroMovimientos, name ='Ingrear Movimientos'),
 
 ]

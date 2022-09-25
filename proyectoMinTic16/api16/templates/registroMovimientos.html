@@ -1,115 +1,74 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   {% load static%}
   <meta charset="UTF-8">
   <title>Empleado</title>
-  <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
-">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+  {% if request.session.nombre_usuario %}
+  <link rel="stylesheet" href='{% static "../static/styles/registroMovimientos.css" %}'>
+  <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %}'>
+  <link rel="stylesheet" href='{% static "https://fonts.googleapis.com/css?family=Tangerine" %}'>
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<html>
-<head>
-<title>Empleado</title>
+  <!-- partial:index.partial.html -->
+  <html>
 
-</head>
- 
-<body>
-<h3><strong>Movimietos</strong> </h3>
+  <head>
+    <title>Empleado</title>
 
- 
-<table align="center" cellpadding = "10">
- 
+  </head>
 
-<form action="/movimientos/" method="POST" class="frm">
-  <tr>
-  <td> Concepto</td>
-  <td><input type="text" name="concepto" />
-  <td><select name="tipo">
-    <!-- Opciones de la lista -->
-    <option value="ingreso" >Ingreso</option>
-    <option value="egreso" selected> Egreso</option> <!-- Opción por defecto -->
-  
-  </select>
-  </td>
-  </td>
-  </tr>
-  
-  <!----- Last Name ---------------------------------------------------------->
-  <tr>
-  <td>Valor</td>
-  <td><input type="text" name="monto" />
-  </td>
-  </tr>
+  <body>
+    <h3><strong>Bienvenido {{empleado.nombre_usuario}}</strong> </h3>
 
-  <tr>
-  <td>Id usuario</td>
-  <td><input type="text" name="id_usuarios" />
-  </td>
-  </tr>
-  
 
-<table id="tablaConsulta" class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Id Movimiento</th>
-      <th scope="col">Fecha Creacion</th>
-      <th scope="col">Concepto</th>
-      <th scope="col">Monto</th>
-      <th scope="col">Id Usuarios</th>
-      <th scope="col">Tipo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
+    <table align="center" cellpadding="10">
       <tr>
-        <th scope="row">4</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
-        <td>@twitter</td>
+        <form action="/movimientos/" method="POST" class="frm">
+      <tr>
+        <td> Concepto</td>
+        <td><input type="text" name="concepto" placeholder="Descripcion movimiento" />
+        </td>
       </tr>
-      
-    </tr>
-  </tbody>
-</table>
+      <tr>
+        <td> Tipo Mov</td>
+        <td><select name="tipo" style="text-align: center;">
+            <!-- Opciones de la lista -->
+            <option value="ingreso">Ingreso</option>
+            <option value="egreso" selected> Egreso</option> <!-- Opción por defecto -->
+          </select>
+        </td>
+
+      </tr>
+
+      <!----- Last Name ---------------------------------------------------------->
+      <tr>
+        <td>Valor</td>
+        <td><input type="text" name="monto" placeholder="$" />
+        </td>
+      </tr>
+
+      <tr>
+        <td><input type="hidden" name="id_usuarios" value="{{empleado.id_usuarios}}" />
+        </td>
+      </tr>
+      </tr>
+    </table>
+    <table align="center" cellpadding="10">
+      <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+      <form action="/movimientos/" method="" class="">
+        <button type="submit" class="btn btn-danger">Listar</button>
+      </form>
+    </table>
 
 
 
-  <div id="botones">
-      <button type="submit" class="btn btn-primary" >Crear</button>
-  <button type="button" class="btn btn-danger">Listar</button>
-  </div>
 
 
-       
-</form>
-     
-</body>
-</html>
+  </body>
+  {%endif%}
+
+  </html>

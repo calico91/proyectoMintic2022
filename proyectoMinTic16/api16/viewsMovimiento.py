@@ -77,13 +77,13 @@ class MovimientosViews(View):
             else:
                 datos = {"Respuesta": "Dato no encontrado"}
         else:
-            templeteName="consultarMovimientos.html"
+            templeteName="contularMovimientos.html"
             movimientos = Movimientos.objects.all()
             datos = {'listadoMovimientos': movimientos}
         return render(request,templeteName,datos)
         
     #carga vista de formulario
-    def formularioRegistroformularioRegistroMovimientos(request):
+    def formularioRegistroMovimientos(request):
         return render(request,"registroMovimientos.html")
 
     def post(self, request):  # metodo para enviar los datos por medio de post

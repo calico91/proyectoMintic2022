@@ -15,25 +15,23 @@ h3{
     font-size: 11pt; 
     font-style: normal;
     font-weight: bold;
+     
     background-color: rgba(88, 91, 94, 0.986); 
     border-collapse: collapse; 
-    border: 2px solid rgb(240, 240, 240);
-    margin-left: auto;
-    margin-right: auto;
+    border: 2px solid rgb(240, 240, 240)
   }
   table.inner{
     border: 0px
   }
   
   #botones{
-    
     padding:10px 10px 45px;
-    
-    margin-left: 600px;
+    margin-left: 580px;
     position: absolute;
       width: 510px;
       height: 409px;
-      margin-bottom: 350px;
+      top: 330px;
+      
   }
   
   body{
@@ -46,13 +44,3 @@ h3{
     font-family: "Open Sans", sans-serif;
     color: #20201f;
   }
-
-  #tablaConsulta{
-
-    padding:30px 400px 45px;
-    margin-right: 700px;
-    position: absolute;
-    margin-bottom: 100px;
-    top: 200px;
-  }
-

@@ -14,20 +14,28 @@
        <form action="/usuario/" method="POST" class="frm">
          <legend>Ingreso Usuarios</legend>
 
-           <input type="hidden" id="id_movimientos" name="id_movimientos">
+         <label for="doc" >id_usuario
+           <input type="text" id="doc" name="id_usuarios">
          </label>
 
-         <label>Concepto
-           <input type="text" id="nombre" name="concepto">
+         <label for="nombre">email
+           <input type="text" id="nombre" name="email">
          </label>
 
-         <label>Monto
-           <input type="text" id="monto" name="monto">
+         <label for="apellido">imagen
+           <input type="text" id="apellido" name="imagen">
          </label>
 
-         <label>Tipo Movimiento
-           <input type="text" id="tipo" name="tipo">
-           <input type="text" id="id_usuario" value="{{request.session.id_usuario}}">
+         <label for="correo">nombre usuario
+           <input type="text" id="correo" name="nombre_usuario">
+        
+        <label for="correo">password
+        <input type="text" id="correo" name="password">
+
+        <label for="correo">rol
+            <input type="text" id="correo" name="rol">
+
+         </label>
 
          <input type="submit" value="registrar" class="button">
        </form>

@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static%}
+
 <head>
-    {% load static%}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
-    <title>Registro Usuarios</title>
+  <meta charset="UTF-8">
+  <title>Registro Usuarios</title>
+  <link rel="stylesheet" href='{% static "../static/styles/registroUsuario.css" %}'>
+  <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"%}'>
+  <link rel="stylesheet" href='{% static "https://fonts.googleapis.com/css?family=Tangerine"%}'>
+
 </head>
+
 <body>
-    <section class="sectiondos">
-        <fieldset class="fieldset">
-       <form action="/usuario/" method="POST" class="frm">
-         <legend>Ingreso Usuarios</legend>
+  <h3><strong> Crear Usuario</strong> </h3>
 
-         <label for="doc" >id_usuario
-           <input type="text" id="doc" name="id_usuarios">
-         </label>
 
-         <label for="nombre">email
-           <input type="text" id="nombre" name="email">
-         </label>
+  <table align="center" cellpadding="10">
+    <form action="/usuario/" method="POST" class="frm">
+      <!----- First Name ---------------------------------------------------------->
+      <tr>
+        <td> Id usuario</td>
+        <td><input type="text" name="id_usuarios" />
 
-         <label for="apellido">imagen
-           <input type="text" id="apellido" name="imagen">
-         </label>
+        </td>
+      </tr>
 
-         <label for="correo">nombre usuario
-           <input type="text" id="correo" name="nombre_usuario">
-        
-        <label for="correo">password
-        <input type="text" id="correo" name="password">
+      <tr>
+        <td> Email</td>
+        <td><input type="email" name="email" />
 
-        <label for="correo">rol
-            <input type="text" id="correo" name="rol">
+        </td>
+      </tr>
 
-         </label>
 
-         <input type="submit" value="registrar" class="button">
-       </form>
-    
-        </fieldset>
+      <tr>
+        <td>Nombre Usuario</td>
+        <td><input type="text" name="nombre_usuario" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>Contraseña</td>
+        <td><input type="password" name="password" />
+        </td>
+      </tr>
+
+      <tr>
+        <td hidden>Imagen</td>
+        <td><input type="hidden" name="imagen" />
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>Rol</td>
+        <td>
+          <select name="rol">
+            <!-- Opciones de la lista -->
+            <option value="administrador">Administrador</option>
+            <option value="empleado" selected> Empleado</option> <!-- Opción por defecto -->
+          </select>
+        </td>
+      </tr>
+      <div id="botones">
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </div>
+  </table>
 </body>
+
 </html>
-
-
-
-
-
-

@@ -55,7 +55,7 @@ class UsuarioViews(View):
             else:
                 datos={"Respuesta":"Dato no encontrado"}
         else:
-            templeteName="consultarCliente.html"
+            templeteName="consultarUsuario.html"
             usuario=Usuarios.objects.all()
             datos={'listadoUsuario':usuario}
         return render(request,templeteName,datos)
@@ -90,14 +90,14 @@ class UsuarioViews(View):
                 
 
                 if detalleUsuario.rol=="administrador":
-                    #Usuarios.objects.all().id_usuarios
-                    request.session['nombre_usuario']=detalleUsuario.id_usuarios
                     request.session['nombre_usuario']=detalleUsuario.nombre_usuario
-                    return render(request,'admin.html')
+                    datos={"usuarios":detalleUsuario}
+                    return render(request,'admin.html',context=datos)
 
                 elif detalleUsuario.rol=="empleado":
                     request.session['nombre_usuario']=detalleUsuario.nombre_usuario
-                    return render(request,'empleado.html')
+                    datos={"empleado":detalleUsuario}
+                    return render(request,'registroMovimientos.html', context=datos)
             
             except Usuarios.DoesNotExist as e:
                  return render(request,'loginError.html')
