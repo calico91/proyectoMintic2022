@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Empresa (models.Model):
-    id_empresa=models.IntegerField(primary_key=True);
+    id_empresa=models.AutoField(primary_key=True);
     nombre=models.CharField(max_length=30);
     nit=models.CharField(max_length=30, unique=True);
     ciudad=models.CharField(max_length=30);

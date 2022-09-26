@@ -11,7 +11,7 @@ urlpatterns=[#se crea este archivo para dar rutas
     #emresa    
     path('formularioRegistroEmpresa/',
         EmpresaViews.formularioRegistroEmpresa, name="listar"),
-    path('empresa/',EmpresaViews.as_view(), name="listar"),
+    path('consultarEmpresa/',EmpresaViews.as_view(), name="listar empresas"),
     path('empresa/<int:id_empr>',EmpresaViews.as_view(), name="actualizar"),
 
     path('empleado/',EmpleadosViews.as_view(), name="listar"),
@@ -21,7 +21,7 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('movimientos/<int:id_movimiento>',MovimientosViews.as_view(), name="actualizar"),
 
     #usuario Admin 
-    path('usuario/',UsuarioViews.as_view(), name="listar Usuarios"),
+    path('consultarUsuario/',UsuarioViews.as_view(), name="listar Usuarios"),
     path('usuario/<int:id_usua>',UsuarioViews.as_view(), name="actualizar"),
 
     path('',UsuarioViews.login, name="login usuario"),

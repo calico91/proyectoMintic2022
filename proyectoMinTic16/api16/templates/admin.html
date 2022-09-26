@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static%}
     <meta charset="UTF-8">
@@ -11,17 +12,19 @@
     <span>{{request.session.nombre_usuario}}</span>
     <span>{{usuarios.id_usuarios}}</span>
     <span>{{usuarios.nombre_usuario}}</span>
-    
+
 </head>
+
 <body>
     <h1>bienvenido señor admin {{usuarios.nombre_usuario}}</h1>
     <a href="/formularioRegistro/">registrar Usuario</a>
     <a href="#">registrar Empledado</a>
     <a href="/formularioRegistroEmpresa/">registrar Empresa</a>
-    <a href="/usuario/">Consultar usuario</a>
-    <a href="#">Consultar Empresa</a>
+    <a href="/consultarUsuario/">Consultar usuario</a>
+    <a href="/consultarEmpresa/">Consultar Empresa</a>
     <a href="#">Consultar Empleado</a>
-    
+
 </body>
 {%endif%}
+
 </html>

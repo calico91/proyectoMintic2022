@@ -77,7 +77,7 @@ class MovimientosViews(View):
             else:
                 datos = {"Respuesta": "Dato no encontrado"}
         else:
-            templeteName="contularMovimientos.html"
+            templeteName="consultarMovimientos.html"
             movimientos = Movimientos.objects.all()
             datos = {'listadoMovimientos': movimientos}
         return render(request,templeteName,datos)

@@ -1,6 +1,6 @@
 import json
 from operator import attrgetter
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import Empresa
 from django.http.response import JsonResponse
@@ -26,25 +26,26 @@ class EmpresaViews(View):
             empresa=list(Empresa.objects.filter(id_empresa=id_empr).values())
             if len(empresa)>0:
                 #empresarespuesta=empresa[0]
-                datos={"Empresa":empresa[0]}
+                datos={"Empresa":empresa.len}
             else:
                 datos={"Respuesta":"Dato no encontrado"}
         else:
-            # json = Empresa.objects.values()
-            # empresa = list(sorted(json.keys(), key=itemgetter(0)))
-            empresa=list(Empresa.objects.values())
-            datos={'listado empresa': empresa}
-        return JsonResponse(datos)
+            empresa=Empresa.objects.all()
+            datos={'listadoEmpresa': empresa}
+        return render (request,"consultarEmpresa.html",datos)
 
     
     
     def post(self,request): # metodo para enviar los datos por medio de post
-        datos=json.loads(request.body)
-        Empresa.objects.create(id_empresa=datos["id_empresa"],nombre=datos["nombre"],
-        nit=datos["nit"],ciudad=datos["ciudad"],direccion=datos["direccion"],
-        telefono=datos["telefono"],sector_productivo=datos["sector_productivo"])
+        Empresa.objects.create(
+            nombre=request.POST["nombre"],
+            nit=request.POST["nit"],
+            ciudad=request.POST["ciudad"],
+            direccion=request.POST["direccion"],
+            telefono=request.POST["telefono"],
+            sector_productivo=request.POST["sector_productivo"])
         #fecha_creacion=datos["fecha_creacion"]
-        return JsonResponse(datos)
+        return redirect ('/consultarEmpresa/')
 
     def put(self,request,id_empr):#metodo para actualizar datos 
         datos=json.loads(request.body)

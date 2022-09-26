@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static%}
+  <meta charset="UTF-8">
+  <title>Consulta</title>
+  {% if request.session.nombre_usuario %}
+  <link rel="stylesheet" href='{% static "../static/styles/registroMovimientos.css" %}'>
+  <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %}'>
+  <link rel="stylesheet" href='{% static "https://fonts.googleapis.com/css?family=Tangerine" %}'>
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <html>
+
+  <head>
+    <title>Consulta Empresa</title>
+
+  </head>
+
+  <body>
+    <h3><strong>Registro de Empresas</strong> </h3>
+    
+
+    <table class="tabla" style="background-color: black;">
+      <thead>
+      <tr>
+          <th>ID emp</th>
+          <th>Nombre Emp</th>
+          <th>Nit</th>
+          <th>Ciudad</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Sector productivo</th>
+          <th>Fecha Creacion</th>
+          <th>Actualizar</th>
+      </tr>
+      </thead>
+      <tbody>
+          {% for i in listadoEmpresa %}
+          <tr>
+          <td>{{i.id_empresa}}</td> 
+          <td>{{i.nombre}}</td>
+          <td>{{i.nit}}</td>
+          <td>{{i.ciudad}}</td>
+          <td>{{i.direccion}}</td>
+          <td>{{i.telefono}}</td>
+          <td>{{i.sector_productivo}}</td>
+          <td>{{i.fecha_creacion}}</td>
+          <td><a href="/actualizarUsuario/{{i.id_usuarios}}">Actualizar</a></td>
+
+          </tr>
+          {% endfor %}
+
+      </tbody>
+      </table>
+
+  </body>
+  {%endif%}
+
+  </html>
