@@ -157,3 +157,6 @@ label span.text-checkbox {
 label input[type="checkbox"] {
   display: none;
 }
+.box-form .g15{
+  text-align: center;
+}

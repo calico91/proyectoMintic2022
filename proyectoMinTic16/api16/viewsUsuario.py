@@ -4,7 +4,7 @@ import json
 from sqlite3 import DateFromTicks
 from django.shortcuts import render,redirect
 from django.views import View
-from .models import  Usuarios
+from .models import  Empleados, Usuarios
 from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -100,7 +100,8 @@ class UsuarioViews(View):
                     return render(request,'registroMovimientos.html', context=datos)
             
             except Usuarios.DoesNotExist as e:
-                 return render(request,'loginError.html')
+                error={"inicioFallido":{1:"usuario o contraseña Incorrecta"}}
+                return render(request,'login.html',context=error)
                 #message.success(request,"usuario o contraseña incorrecta")
                 
                 
@@ -132,9 +133,16 @@ class UsuarioViews(View):
         usuarios.password=password
         usuarios.rol=rol
         usuarios.save()
-        return redirect ('/usuario/')
+        return redirect ('/consultarUsuario/')
 
 
+    def eliminar(request,id_usuarios):
+        #usuario=Usuarios.objects.filter(id_usuarios=id_usuarios).values()
+        Usuarios.objects.filter(id_usuarios=id_usuarios).delete()
+        return redirect ('/consultarUsuario/')
 
-
-            
+    def consultarInnerJoin(request,id_usuarios):
+        consulta=Empleados.objects.select_related('id_usuarios').filter(id_usuarios=id_usuarios)
+        templateName="consultarEmpleadosUsuarios.html"
+        datos={"lista":consulta}
+        return render(request,templateName,datos)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Id Usuario</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nombre usuario</th>
+        </tr>
+        {%for i in lista%}
+        <tr>
+            <td>{{i.id_usuarios.id_usuarios}}</td>
+            <td>{{i.nombre}}</td>
+            <td>{{i.Apellidos}}</td>
+            <td>{{i.id_usuarios.nombre_usuario}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>

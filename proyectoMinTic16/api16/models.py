@@ -26,7 +26,11 @@ class Usuarios(models.Model):
     fecha_creacion=models.DateField(auto_now_add=True,null=True);
 
     def __str__(self):
-        return self.nombre_usuario
+        return '%s %s %s %s %s %s %s %s %s' %(
+            self.id_usuarios, self.email, self.imagen, self.nombre_usuario, self.password, self.rol, self.fecha_creacion)
+    
+    # def __str__(self):
+    #     return self.nombre_usuario
 
 class Empleados (models.Model):
     id_empleado=models.IntegerField(primary_key=True);
@@ -40,7 +44,11 @@ class Empleados (models.Model):
     id_empresa=models.ForeignKey(Empresa, on_delete=models.CASCADE);
 
     def __str__(self):
-        return self.nombre
+        return '%s %s %s %s %s %s %s %s %s' %(
+            self.id_empleado, self.nombre, self.apellidos, self.email, self.telefono, self.empresa, self.fecha_creacion, self.id_usuarios,self.id_empresa)
+
+    # def __str__(self):
+    #     return self.nombre
 
 class Movimientos (models.Model):#entidad pendiente por completar 
     id_movimientos=models.AutoField(primary_key=True);

@@ -1,6 +1,8 @@
 from django.urls import path
 from django.contrib.auth.views import redirect_to_login,logout_then_login
 
+from api16.models import Usuarios
+
 from .viewsEmpleado import EmpleadosViews
 from .viewsEmpresa import EmpresaViews
 from .viewsUsuario import UsuarioViews
@@ -34,10 +36,11 @@ urlpatterns=[#se crea este archivo para dar rutas
     path('actualizarUsuario/<int:id_usuarios>',UsuarioViews.formularioActualizar, 
             name="Formulario Actualizar"),
     path('actualizarUsuario/',UsuarioViews.actualizar, name="Actualizar"),
+    path('eliminarUsuario/<int:id_usuarios>',UsuarioViews.eliminar, name="Eliminar"),
 
     #usuario empleado
     path('consultarMovimientos/',MovimientosViews.as_view(), name="listar"),
     path('formularioRegistroMovimientos/',
         MovimientosViews.formularioRegistroMovimientos, name ='Ingrear Movimientos'),
-
+    path('consultarEmpleadosUsuarios/<int:id_usuarios>',UsuarioViews.consultarInnerJoin, name="consultarInner"),
 ]

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% if request.session.nombre_usuario %}
     {% load static%}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +37,7 @@
             <td>{{i.rol}}</td>
             <td>{{i.fecha_creacion}}</td>
             <td><a href="/actualizarUsuario/{{i.id_usuarios}}">Actualizar</a></td>
-            <td><a href="/eliminarCliente/{{i.id_usuarios}}">Eliminar</a></td>
+            <td><a href="/eliminarUsuario/{{i.id_usuarios}}">Eliminar</a></td>
 
             </tr>
             {% endfor %}
@@ -45,4 +46,5 @@
         </table>
     </section>
 </body>
+{%endif%}
 </html>

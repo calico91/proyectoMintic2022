@@ -3,7 +3,7 @@
 	{% load static%}
 <head>
 	<meta charset="UTF-8">
-	<title>Página de ingreso de la cooperativa</title>
+	<title>Login</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
@@ -19,7 +19,7 @@
 		<div class="left">
 			<div class="overlay">
 				<h1></h1>
-				<h2>Cooperativa G15</h2>
+				<h2 class="g15">G15</h2>
 				<img src='{% static "../static/img/channels-642_misiontic_logo.png"%}'>
 			</div>
 		</div>
@@ -41,6 +41,7 @@
 				<!-- Angular -->
 
 				<button in type="submit" class="boton">Ingresar</button>
+				<p>{{inicioFallido.1}}</p>
 				
 
 
