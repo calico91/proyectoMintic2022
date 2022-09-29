@@ -14,7 +14,7 @@ class Empresa (models.Model):
 
     #metodo para mostrar el nombre en el admin de django
     def __str__(self):
-        return self.nombre,self.id_empresa
+        return self.nombre
 
 class Usuarios(models.Model):
     id_usuarios=models.IntegerField(primary_key=True);
@@ -25,12 +25,12 @@ class Usuarios(models.Model):
     rol=models.CharField(max_length=30);
     fecha_creacion=models.DateField(auto_now_add=True,null=True);
 
-    def __str__(self):
-        return '%s %s %s %s %s %s %s %s %s' %(
-            self.id_usuarios, self.email, self.imagen, self.nombre_usuario, self.password, self.rol, self.fecha_creacion)
-    
     # def __str__(self):
-    #     return self.nombre_usuario
+    #     return '%s %s %s %s %s %s %s %s %s' %(
+    #         self.id_usuarios, self.email, self.imagen, self.nombre_usuario, self.password, self.rol, self.fecha_creacion)
+    
+    def __str__(self):
+        return self.nombre_usuario
 
 class Empleados (models.Model):
     id_empleado=models.IntegerField(primary_key=True);
@@ -43,12 +43,14 @@ class Empleados (models.Model):
     id_usuarios=models.ForeignKey(Usuarios, on_delete=models.CASCADE);
     id_empresa=models.ForeignKey(Empresa, on_delete=models.CASCADE);
 
-    def __str__(self):
-        return '%s %s %s %s %s %s %s %s %s' %(
-            self.id_empleado, self.nombre, self.apellidos, self.email, self.telefono, self.empresa, self.fecha_creacion, self.id_usuarios,self.id_empresa)
-
     # def __str__(self):
-    #     return self.nombre
+    #     return self.empresa
+    
+    # def __str__(self):
+    #     return '%s %s %s %s %s %s %s %s %s' %(
+    #         self.id_empleado, self.nombre, self.apellidos, self.email, self.telefono, self.empresa, self.fecha_creacion, self.id_usuarios,self.id_empresa)
+
+    
 
 class Movimientos (models.Model):#entidad pendiente por completar 
     id_movimientos=models.AutoField(primary_key=True);
@@ -58,7 +60,7 @@ class Movimientos (models.Model):#entidad pendiente por completar
     id_usuarios=models.ForeignKey(Usuarios, on_delete=models.CASCADE, null=True);
     tipo=models.CharField(max_length=30, null=True);
 
-    def __int__(self):
-        return self.id_movimientos,self.id_usuarios
+    # def __int__(self):
+    #     return self.id_movimientos,self.id_usuarios
 
 

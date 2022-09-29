@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Actualizar mis datos</title>
+</head>
+
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+            <form action="/actualizarEmpresa/" method="POST" class="frm">
+                {%csrf_token%}
+                <legend>Actualizar mis datos</legend>
+
+
+                <input type="hidden" id="doc" name="id_empresa" value="{{usuario.id_empleado}}" readonly>
+
+                <label for="nombre">Nombre 
+                    <input type="text" id="nombre" name="nombre" value="{{usuario.nombre}}">
+                </label>
+
+                <label for="nombre">Apellidos
+                    <input type="text" id="imagen" name="apellidos" value="{{usuario.apellidos}}">
+                </label>
+
+                <label for="nombre_usuario">Email
+                    <input type="text" id="nombre_usuario" name="email" value="{{usuario.email}}">
+                </label>
+
+                <label for="password">Telefono
+                    <input type="text" id="password" name="telefono" value="{{usuario.telefono}}">
+                </label>
+
+                <input type="hidden" id="rol" name="empresa" value="{{usuario.empresa}}">
+                <input type="hidden" id="rol" name="id_usuarios" value="{{usuario.id_usuarios}}">
+                <input type="hidden" id="rol" name="id_empresa" value="{{usuario.id_empresa}}">
+
+
+                <input type="submit" value="Actualizar" class="button">
+            </form>
+
+        </fieldset>
+</body>
+
+</html>

@@ -21,17 +21,17 @@ class MovimientosViews(View):
 
     
     
-    def post(self, request):  # metodo para enviar los datos por medio de post
-        datos = json.loads(request.body)
-        idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
-        crear=Movimientos.objects.create( 
-                                 concepto=datos["concepto"], 
-                                 monto=datos["monto"],
-                                 tipo=datos["tipo"], 
-                                 id_usuarios=idUsuario)
-        crear.save();
-        # fecha_creacion=datos["fecha_creacion"]
-        return JsonResponse(datos)
+    # def post(self, request):  # metodo para enviar los datos por medio de post
+    #     datos = json.loads(request.body)
+    #     idUsuario=Usuarios.objects.get(id_usuarios=datos["id_usuarios"])
+    #     crear=Movimientos.objects.create( 
+    #                              concepto=datos["concepto"], 
+    #                              monto=datos["monto"],
+    #                              tipo=datos["tipo"], 
+    #                              id_usuarios=idUsuario)
+    #     crear.save();
+    #     # fecha_creacion=datos["fecha_creacion"]
+    #     return JsonResponse(datos)
 
     def put(self, request, id_movimiento):  # metodo para actualizar datos
         datos = json.loads(request.body)
@@ -67,20 +67,16 @@ class MovimientosViews(View):
     # metodo para consultar por el ID, si no envio ningun parametro hace la consulta
     # general
 
-    def get(self, request, id_movimiento=0):
-        if id_movimiento > 0:
-            movimientos = list(Movimientos.objects.filter(
-                id_movimientos=id_movimiento).values())
-            if len(movimientos) > 0:
-                movimientoRespuesta = movimientos[0]
-                datos = {"Movimientos": movimientoRespuesta}
-            else:
-                datos = {"Respuesta": "Dato no encontrado"}
+    def get(self, request, id_usuarios=0):
+        if id_usuarios > 0:
+            movimientos = Movimientos.objects.filter(
+                id_usuarios=id_usuarios)
+            datos = {"listadoMovimientos": movimientos}
+            return render(request,"consultarMovimientos.html",datos)
         else:
-            templeteName="consultarMovimientos.html"
             movimientos = Movimientos.objects.all()
             datos = {'listadoMovimientos': movimientos}
-        return render(request,templeteName,datos)
+            return render(request,"consultarMovimientos.html",datos)
         
     #carga vista de formulario
     def formularioRegistroMovimientos(request):

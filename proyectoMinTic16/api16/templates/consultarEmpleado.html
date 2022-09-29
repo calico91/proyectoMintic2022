@@ -4,7 +4,7 @@
 <head>
   {% load static%}
   <meta charset="UTF-8">
-  <title>Consulta</title>
+  <title>Consulta Empleados</title>
   {% if request.session.nombre_usuario %}
   <link rel="stylesheet" href='{% static "../static/styles/registroMovimientos.css" %}'>
   <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %}'>
@@ -16,42 +16,42 @@
   <html>
 
   <head>
-    <title>Consulta Empresa</title>
+    <title>Empleados</title>
 
   </head>
 
   <body>
-    <h3><strong>Registro de Empresas</strong> </h3>
+    <h3><strong>Registro Empleados</strong> </h3>
     
 
     <table class="tabla" style="background-color: black;">
       <thead>
       <tr>
-          <th>ID emp</th>
-          <th>Nombre Emp</th>
-          <th>Nit</th>
-          <th>Ciudad</th>
-          <th>Direccion</th>
+          <th>ID Emp</th>
+          <th>Nombre</th>
+          <th>apellidos</th>
+          <th>Email</th>
           <th>Telefono</th>
-          <th>Sector productivo</th>
-          <th>Fecha Creacion</th>
+          <th>Id usuarios</th>
+          <th>Id Empresa</th>
+          <th>Fecha creacion</th>
           <th>Actualizar</th>
           <th>Eliminar</th>
+      
       </tr>
       </thead>
       <tbody>
-          {% for i in listadoEmpresa %}
+          {% for i in listadoEmpleado %}
           <tr>
-          <td>{{i.id_empresa}}</td> 
+          <td>{{i.id_empleado}}</td> 
           <td>{{i.nombre}}</td>
-          <td>{{i.nit}}</td>
-          <td>{{i.ciudad}}</td>
-          <td>{{i.direccion}}</td>
+          <td>{{i.apellidos}}</td>
+          <td>{{i.email}}</td>
           <td>{{i.telefono}}</td>
-          <td>{{i.sector_productivo}}</td>
+          <td>{{i.id_usuarios}}</td>
+          <td>{{i.id_empresa}}</td>
           <td>{{i.fecha_creacion}}</td>
-          <td><a href="/actualizarEmpresa/{{i.id_empresa}}">Actualizar</a></td>
-          <td><a href="/eliminarEmpresa/{{i.id_empresa}}">Eliminar</a></td>
+          <td><a href="/actualizarUsuario/{{i.id_usuarios}}">Actualizar</a></td>
 
           </tr>
           {% endfor %}

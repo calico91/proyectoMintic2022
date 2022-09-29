@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Actualizar Empresa</title>
+</head>
+
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+            <form action="/actualizarEmpresa/" method="POST" class="frm">
+                {%csrf_token%}
+                <legend>Actualizar Empresa</legend>
+
+
+                <input type="hidden" id="doc" name="id_empresa" value="{{empresa.id_empresa}}" readonly>
+
+                <label for="nombre">Nombre empresa
+                    <input type="text" id="nombre" name="nombre" value="{{empresa.nombre}}">
+                </label>
+
+                <label for="nombre">Nit
+                    <input type="text" id="imagen" name="nit" value="{{empresa.nit}}">
+                </label>
+
+                <label for="nombre_usuario">Ciudad
+                    <input type="text" id="nombre_usuario" name="ciudad" value="{{empresa.ciudad}}">
+                </label>
+
+                <label for="password">Direccion
+                    <input type="text" id="password" name="direccion" value="{{empresa.direccion}}">
+                </label>
+
+                <label for="rol">Telefono
+                    <input type="text" id="rol" name="telefono" value="{{empresa.telefono}}">
+                </label>
+
+                <label for="rol">Sector productivo
+                    <input type="text" id="rol" name="sector_productivo" value="{{empresa.sector_productivo}}">
+                </label>
+
+                <input type="submit" value="Actualizar" class="button">
+            </form>
+
+        </fieldset>
+</body>
+
+</html>

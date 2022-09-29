@@ -117,7 +117,7 @@ class UsuarioViews(View):
         return render(request,"actualizarUsuario.html",datos)
 
 
-    def actualizar(request):
+    def actualizarUsuario(request):
         id_usuarios=request.POST['id_usuarios']
         email=request.POST['email']
         imagen=request.POST['imagen']

@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import Empleados, Usuarios, Empresa
 from django.http.response import JsonResponse
@@ -20,19 +20,19 @@ class EmpleadosViews(View):
 
     # metodo para consultar por el ID, si no envio ningun parametro hace la consulta
     # general
-    def get(self, request, id_empleado=0):
-        if id_empleado > 0:
-            empleados = list(Empleados.objects.filter(
-                id_empleado=id_empleado).values())
-            if len(empleados) > 0:
-                empleadoRespuesta = empleados[0]
-                datos = {"Empleado": empleadoRespuesta}
-            else:
-                datos = {"Respuesta": "Dato no encontrado"}
-        else:
-            empleados = list(Empleados.objects.values())
-            datos = {'listado empleados': empleados}
-        return JsonResponse(datos)
+    # def get(self, request, id_empleado=0):
+    #     if id_empleado > 0:
+    #         empleados = list(Empleados.objects.filter(
+    #             id_empleado=id_empleado).values())
+    #         if len(empleados) > 0:
+    #             empleadoRespuesta = empleados[0]
+    #             datos = {"Empleado": empleadoRespuesta}
+    #         else:
+    #             datos = {"Respuesta": "Dato no encontrado"}
+    #     else:
+    #         empleados = list(Empleados.objects.values())
+    #         datos = {'listado empleados': empleados}
+    #     return JsonResponse(datos)
 
     def post(self, request):  # metodo para enviar los datos por medio de post
         datos = json.loads(request.body)
@@ -85,3 +85,40 @@ class EmpleadosViews(View):
         else:
             mensaje = {"Respuesta": "Dato no encontrado"}
         return JsonResponse(mensaje)
+
+    def formularioRegistroEmpleado(request):
+        return render(request,"registroEmpleado.html")
+
+    def formularioActualizarEmpleado(request,id_usuario):
+        usuario=Empleados.objects.get(id_usuarios=id_usuario)
+        datos={"usuario":usuario}
+        return render(request,"actualizarMisDatos.html",datos)
+
+    def post(self, request):  # metodo para enviar los datos por medio de post
+        idUsuario=Usuarios.objects.get(id_usuarios=request.POST["id_usuarios"])
+        idempresa=Empresa.objects.get(id_empresa=request.POST["id_empresa"])
+        Empleados.objects.create(id_empleado=request.POST["id_empleado"],
+                                nombre=request.POST["nombre"],
+                                apellidos=request.POST["apellidos"],
+                                email=request.POST["email"],
+                                telefono=request.POST["telefono"],
+                                empresa=request.POST["empresa"],
+                                id_usuarios=idUsuario,
+                                id_empresa=idempresa,)
+
+        return redirect('/consultarEmpleado/')
+
+    def get(self, request, id_empleado=0):
+        if id_empleado > 0:
+            empleado = list(Empleados.objects.filter(
+                id_empleados=id_empleado).values())
+            if len(empleado) > 0:
+                empleadoRespuesta = empleado[0]
+                datos = {"empleado": empleadoRespuesta}
+            else:
+                datos = {"Respuesta": "Dato no encontrado"}
+        else:
+            templeteName="consultarEmpleado.html"
+            empleado = Empleados.objects.all()
+            datos = {'listadoEmpleado': empleado}
+        return render(request,templeteName,datos)

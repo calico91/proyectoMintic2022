@@ -82,3 +82,34 @@ class EmpresaViews(View):
     #metodo para cargar el formulario de registro
     def formularioRegistroEmpresa(request):
         return render(request,"registroEmpresa.html")
+
+    def formularioActualizarEmpresa(request,id_empresa):
+        empresa=Empresa.objects.get(id_empresa=id_empresa)
+        datos={'empresa':empresa}
+
+        return render(request,"actualizarEmpresa.html",datos)
+
+    def actualizarEmpresa(request):
+        id_empresa=request.POST['id_empresa']
+        nombre=request.POST['nombre']
+        nit=request.POST['nit']
+        ciudad=request.POST['ciudad']
+        direccion=request.POST['direccion']
+        telefono=request.POST['telefono']
+        sector_productivo=request.POST['sector_productivo']
+
+        empresa=Empresa.objects.get(id_empresa=id_empresa)
+        #id_usuarios=usuarios
+        empresa.nombre=nombre
+        empresa.nit=nit
+        empresa.ciudad=ciudad
+        empresa.direccion=direccion
+        empresa.telefono=telefono
+        empresa.sector_productivo=sector_productivo
+        empresa.save()
+        return redirect ('/consultarEmpresa/')
+
+    def eliminarEmpresa(request,id_empresa):
+        #usuario=Usuarios.objects.filter(id_usuarios=id_usuarios).values()
+        Empresa.objects.filter(id_empresa=id_empresa).delete()
+        return redirect ('/consultarEmpresa/')

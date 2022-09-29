@@ -46,7 +46,7 @@
       <!----- Last Name ---------------------------------------------------------->
       <tr>
         <td>Valor</td>
-        <td><input type="text" name="monto" placeholder="$" />
+        <td><input type="text" name="monto" placeholder="$" value="{{empleado.nombre}}"/>
         </td>
       </tr>
 
@@ -59,8 +59,11 @@
     <table align="center" cellpadding="10">
       <button type="submit" class="btn btn-primary">Crear</button>
       </form>
-      <form action="/movimientos/" method="" class="">
+      <form action="/movimientos/{{empleado.id_usuarios}}" method="" class="">
         <button type="submit" class="btn btn-danger">Listar</button>
+      </form>
+      <form action="/empleado/{{empleado.id_usuarios}}" method="" class="">
+        <button type="submit" class="btn btn-danger">Actualizar datos</button>
       </form>
     </table>
 
