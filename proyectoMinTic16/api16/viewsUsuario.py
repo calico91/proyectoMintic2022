@@ -96,7 +96,9 @@ class UsuarioViews(View):
 
                 elif detalleUsuario.rol=="empleado":
                     request.session['nombre_usuario']=detalleUsuario.nombre_usuario
-                    datos={"empleado":detalleUsuario}
+                    datosEmpleado=Empleados.objects.get(id_usuarios=detalleUsuario.id_usuarios)
+                    datos={"empleado":detalleUsuario,
+                            "datosEmpleados":datosEmpleado}
                     return render(request,'registroMovimientos.html', context=datos)
             
             except Usuarios.DoesNotExist as e:

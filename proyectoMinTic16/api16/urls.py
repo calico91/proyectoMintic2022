@@ -23,14 +23,23 @@ urlpatterns=[#se crea este archivo para dar rutas
 
     # datos empleado
 
-    path('empleado/',EmpleadosViews.as_view(), name="listar"),
-    path('empleado/<int:id_usuario>',EmpleadosViews.
+    path('ActualizarMisDatos/<int:id_usuario>',EmpleadosViews.
         formularioActualizarEmpleado, name="frmActEmpleado"),
     path('formularioRegistroEmpleado/',EmpleadosViews.formularioRegistroEmpleado, name="listar"), 
     path('consultarEmpleado/',EmpleadosViews.as_view(), name="listar"),   
+    path('actualizarEmpleado/<int:id_empleado>',
+                EmpleadosViews.formularioActualizarEmpleados, name="listar"),  
+    path('actualizarEmpleado/',EmpleadosViews.actualizarEmpleado, name="Actualizar"),  
+     path('eliminarEmpleado/<int:id_empleado>',
+                EmpleadosViews.eliminarEmpleado, name="Eliminar"),  
+ 
 
     #movimientos    
+    path('actualizarMovimientos/<int:id_mov>',
+        MovimientosViews.formularioActualizarMovimientos, name="listar"),
     path('movimientos/',MovimientosViews.as_view(), name="listar"),
+    path('actualizarMovimientos/',MovimientosViews.actualizarMovimientos, name="actualizar"),
+
 
     path('movimientos/<int:id_usuarios>',MovimientosViews.as_view(), name="actualizar"),
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static%}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+  <title>Movimientos</title>
+</head>
+
+<body>
+  <section class="sectiondos">
+    <fieldset class="fieldset">
+      <form action="/actualizarMovimientos/" method="POST" class="frm">
+        {%csrf_token%}
+        <legend>Actualizar Movimientos</legend>
+
+
+        <input type="hidden" id="doc" name="id_movimientos" value="{{movimientos.id_movimientos}}" readonly>
+
+        <label for="nombre">Concepto
+          <input type="text" id="nombre" name="concepto" value="{{movimientos.concepto}}">
+        </label>
+
+        <label for="nombre_usuario">Monto
+          <input type="text" id="nombre_usuario" name="monto" value="{{movimientos.monto}}">
+        </label>
+
+        <label for="password">Tipo
+          <td>
+            <select name="tipo">
+              <option value="ingreso">Ingreso</option>
+              <option value="egreso" selected>Egreso</option> <!-- Opción por defecto -->
+            </select>
+          </td>
+
+          <td>
+            <input type="submit" value="Actualizar" class="button">
+          </td>
+      </form>
+
+    </fieldset>
+</body>
+
+</html>

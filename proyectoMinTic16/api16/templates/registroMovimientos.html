@@ -21,12 +21,14 @@
   </head>
 
   <body>
-    <h3><strong>Bienvenido {{empleado.nombre_usuario}}</strong> </h3>
+    <h3><strong>Bienvenido {{datosEmpleados.nombre}}</strong> </h3>
+    <h3>Empresa {{datosEmpleados.id_empresa}}</h3>
 
 
     <table align="center" cellpadding="10">
       <tr>
         <form action="/movimientos/" method="POST" class="frm">
+          {%csrf_token%}
       <tr>
         <td> Concepto</td>
         <td><input type="text" name="concepto" placeholder="Descripcion movimiento" />
@@ -46,7 +48,7 @@
       <!----- Last Name ---------------------------------------------------------->
       <tr>
         <td>Valor</td>
-        <td><input type="text" name="monto" placeholder="$" value="{{empleado.nombre}}"/>
+        <td><input type="text" name="monto" placeholder="$" />
         </td>
       </tr>
 
@@ -56,20 +58,24 @@
       </tr>
       </tr>
     </table>
-    <table align="center" cellpadding="10">
-      <button type="submit" class="btn btn-primary">Crear</button>
-      </form>
-      <form action="/movimientos/{{empleado.id_usuarios}}" method="" class="">
-        <button type="submit" class="btn btn-danger">Listar</button>
-      </form>
-      <form action="/empleado/{{empleado.id_usuarios}}" method="" class="">
-        <button type="submit" class="btn btn-danger">Actualizar datos</button>
-      </form>
+    <table>
+      <tr>
+        <td>{{mensaje.1}}</td>
+      </tr>
     </table>
 
-
-
-
+    <table align="center" cellpadding="10">
+      <tr>
+        <td><button type="submit" class="btn btn-primary">Crear</button></td>
+        </form>
+        <form action="/movimientos/{{empleado.id_usuarios}}" method="" class="">
+          <td><button type="submit" class="btn btn-danger">Listar</button></td>
+        </form>
+        <form action="/ActualizarMisDatos/{{empleado.id_usuarios}}" method="" class="">
+          <td><button type="submit" class="btn btn-danger">Actualizar datos</button></td>
+        </form>
+        </td>
+    </table>
 
   </body>
   {%endif%}

@@ -4,7 +4,7 @@
 <head>
   {% load static%}
   <meta charset="UTF-8">
-  <title>Consulta Empleados</title>
+  <title>Consulta MovEmpleado</title>
   {% if request.session.nombre_usuario %}
   <link rel="stylesheet" href='{% static "../static/styles/registroMovimientos.css" %}'>
   <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" %}'>
@@ -16,43 +16,37 @@
   <html>
 
   <head>
-    <title>Empleados</title>
+    <title>Empleado</title>
 
   </head>
 
   <body>
-    <h3><strong>Registro Empleados</strong> </h3>
+    <h3><strong>Registro de Movimientos</strong> </h3>
     
 
     <table class="tabla" style="background-color: black;">
       <thead>
       <tr>
-          <th>ID Emp</th>
-          <th>Nombre</th>
-          <th>apellidos</th>
-          <th>Email</th>
-          <th>Telefono</th>
-          <th>Usuario</th>
-          <th>Empresa</th>
-          <th>Fecha creacion</th>
+          <th>ID Mov</th>
+          <th>concepto</th>
+          <th>monto</th>
+          <th>tipo</th>
+          <th>usuario</th>
+          <th>Fecha Creacion</th>
           <th>Actualizar</th>
-          <th>Eliminar</th>
       
       </tr>
       </thead>
       <tbody>
-          {% for i in listadoEmpleado %}
+          {% for i in listadoMovimientos %}
           <tr>
-          <td>{{i.id_empleado}}</td> 
-          <td>{{i.nombre}}</td>
-          <td>{{i.apellidos}}</td>
-          <td>{{i.email}}</td>
-          <td>{{i.telefono}}</td>
+          <td>{{i.id_movimientos}}</td> 
+          <td>{{i.concepto}}</td>
+          <td>{{i.monto}}</td>
+          <td>{{i.tipo}}</td>
           <td>{{i.id_usuarios}}</td>
-          <td>{{i.id_empresa}}</td>
           <td>{{i.fecha_creacion}}</td>
-          <td><a href="/actualizarEmpleado/{{i.id_empleado}}">Actualizar</a></td>
-          <td><a href="/eliminarEmpleado/{{i.id_empleado}}">Eliminar</a></td>
+          <td><a href="/actualizarMovimientos/{{i.id_movimientos}}">Actualizar</a></td>
 
           </tr>
           {% endfor %}

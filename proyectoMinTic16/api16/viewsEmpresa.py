@@ -1,4 +1,5 @@
 import json
+from multiprocessing import context
 from operator import attrgetter
 from django.shortcuts import render,redirect
 from django.views import View
@@ -107,7 +108,9 @@ class EmpresaViews(View):
         empresa.telefono=telefono
         empresa.sector_productivo=sector_productivo
         empresa.save()
-        return redirect ('/consultarEmpresa/')
+        actualizacion={"actualizacion":{1:"se modifico la empresa+{empresa.nombre}"}}
+        error={"inicioFallido":{1:"usuario o contraseña Incorrecta"}}
+        return redirect ('/consultarEmpresa/',context=error)
 
     def eliminarEmpresa(request,id_empresa):
         #usuario=Usuarios.objects.filter(id_usuarios=id_usuarios).values()

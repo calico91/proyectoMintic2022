@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    {% load static%}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
-    <title>Registro Usuarios</title>
+  {% load static%}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+  <title>Registro Usuarios</title>
 </head>
+
 <body>
-    <section class="sectiondos">
-        <fieldset class="fieldset">
-       <form action="/actualizarUsuario/" method="POST" class="frm">
+  <section class="sectiondos">
+    <fieldset class="fieldset">
+      <form action="/actualizarUsuario/" method="POST" class="frm">
         {%csrf_token%}
-         <legend>Actualizar Usuario</legend>
+        <legend>Actualizar Usuario</legend>
 
 
-           <input type="hidden" id="doc" name="id_usuarios" value="{{usuarios.id_usuarios}}" readonly>
+        <input type="hidden" id="doc" name="id_usuarios" value="{{usuarios.id_usuarios}}" readonly>
 
-         <label for="nombre">email
-           <input type="email" id="nombre" name="email" value="{{usuarios.email}}">
-         </label>
+        <label for="nombre">email
+          <input type="email" id="nombre" name="email" value="{{usuarios.email}}">
+        </label>
 
-           <input type="hidden" id="imagen" name="imagen" value="{{usuarios.imagen}}">
+        <input type="hidden" id="imagen" name="imagen" value="{{usuarios.imagen}}">
 
-         <label for="nombre_usuario">nombre usuario
-           <input type="text" id="nombre_usuario" name="nombre_usuario" value="{{usuarios.nombre_usuario}}">
-        
+        <label for="nombre_usuario">nombre usuario
+          <input type="text" id="nombre_usuario" name="nombre_usuario" value="{{usuarios.nombre_usuario}}">
+        </label>
+
         <label for="password">password
-        <input type="text" id="password" name="password" value="{{usuarios.password}}">
+          <input type="text" id="password" name="password" value="{{usuarios.password}}">
+        </label>
+        
+        <label for="password">rol
+          <td>
+            <select name="rol">
+              <option value="administrador">Administrador</option>
+              <option value="empleado" selected> Empleado</option> <!-- Opción por defecto -->
+            </select>
+          </td>
 
-        <label for="rol">rol
-            <input type="text" id="rol" name="rol" value="{{usuarios.rol}}">
+          <td>
+            <input type="submit" value="Actualizar" class="button">
+          </td>
+      </form>
 
-         </label>
-
-         <input type="submit" value="Actualizar" class="button">
-       </form>
-    
-        </fieldset>
+    </fieldset>
 </body>
+
 </html>
-
-
-
-
-
-

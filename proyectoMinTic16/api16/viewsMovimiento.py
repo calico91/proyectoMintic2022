@@ -1,7 +1,8 @@
 import json
+import re
 from django.shortcuts import render,redirect
 from django.views import View
-from .models import  Movimientos, Usuarios 
+from .models import  Empleados, Empresa, Movimientos, Usuarios 
 from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -70,13 +71,13 @@ class MovimientosViews(View):
     def get(self, request, id_usuarios=0):
         if id_usuarios > 0:
             movimientos = Movimientos.objects.filter(
-                id_usuarios=id_usuarios)
+                id_usuarios=id_usuarios).order_by('id_movimientos')
             datos = {"listadoMovimientos": movimientos}
             return render(request,"consultarMovimientos.html",datos)
         else:
-            movimientos = Movimientos.objects.all()
+            movimientos = Movimientos.objects.all().order_by('id_movimientos')
             datos = {'listadoMovimientos': movimientos}
-            return render(request,"consultarMovimientos.html",datos)
+            return render(request,"consultarMovimientosAdmin.html",datos)
         
     #carga vista de formulario
     def formularioRegistroMovimientos(request):
@@ -90,4 +91,31 @@ class MovimientosViews(View):
                                 id_usuarios=idUsuario,
                                 tipo=request.POST["tipo"])
 
+        datosEmpleado=Empleados.objects.get(id_usuarios=request.POST["id_usuarios"])
+        datos={"empleado":idUsuario,
+                "datosEmpleados":datosEmpleado,
+                "mensaje":{1:"Datos Registrados Correctamente"}}
+        
+        return render(request,"registroMovimientos.html", context=datos)
+
+    def formularioActualizarMovimientos(request,id_mov):
+        movimientos=Movimientos.objects.get(id_movimientos=id_mov)
+        datos={'movimientos':movimientos}
+
+        return render(request,"actualizarMovimientos.html",datos)
+    
+    def actualizarMovimientos(request):#actualizar 
+        id_movimientos=request.POST['id_movimientos']
+        concepto=request.POST['concepto']
+        monto=request.POST['monto']
+        tipo=request.POST['tipo']
+        movimientos=Movimientos.objects.get(id_movimientos=id_movimientos,)
+        movimientos.concepto=concepto
+        movimientos.monto=monto
+        movimientos.tipo=tipo
+        movimientos.save()
+
         return redirect('/consultarMovimientos/')
+
+
+        

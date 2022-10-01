@@ -13,12 +13,12 @@
 <body>
     <section class="sectiondos">
         <fieldset class="fieldset">
-            <form action="/actualizarEmpresa/" method="POST" class="frm">
+            <form action="/actualizarEmpleado/" method="POST" class="frm">
                 {%csrf_token%}
                 <legend>Actualizar mis datos</legend>
 
 
-                <input type="hidden" id="doc" name="id_empresa" value="{{usuario.id_empleado}}" readonly>
+                <input type="hidden" id="doc" name="id_empleado" value="{{usuario.id_empleado}}" readonly>
 
                 <label for="nombre">Nombre 
                     <input type="text" id="nombre" name="nombre" value="{{usuario.nombre}}">
@@ -36,7 +36,7 @@
                     <input type="text" id="password" name="telefono" value="{{usuario.telefono}}">
                 </label>
 
-                <input type="hidden" id="rol" name="empresa" value="{{usuario.empresa}}">
+                <input type="hidden" id="rol" name="empresa" value="null">
                 <input type="hidden" id="rol" name="id_usuarios" value="{{usuario.id_usuarios}}">
                 <input type="hidden" id="rol" name="id_empresa" value="{{usuario.id_empresa}}">
 

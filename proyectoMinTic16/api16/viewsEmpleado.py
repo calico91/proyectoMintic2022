@@ -87,7 +87,14 @@ class EmpleadosViews(View):
         return JsonResponse(mensaje)
 
     def formularioRegistroEmpleado(request):
-        return render(request,"registroEmpleado.html")
+        usuario=Usuarios.objects.all()
+        empresa=Empresa.objects.all()
+        datos={
+            "usuario":usuario,
+            "empresa":empresa
+        }
+
+        return render(request,"registroEmpleado.html",datos)
 
     def formularioActualizarEmpleado(request,id_usuario):
         usuario=Empleados.objects.get(id_usuarios=id_usuario)
@@ -122,3 +129,49 @@ class EmpleadosViews(View):
             empleado = Empleados.objects.all()
             datos = {'listadoEmpleado': empleado}
         return render(request,templeteName,datos)
+
+    def formularioActualizarEmpleados(request,id_empleado):
+        empleado=Empleados.objects.get(id_empleado=id_empleado)
+        usuario=Usuarios.objects.all()
+        empresa=Empresa.objects.all()
+        datos={
+            "empleado":empleado,
+            "usuario":usuario,
+            "empresa":empresa
+        }
+
+        return render(request,"actualizarEmpleado.html",datos)
+    
+    def actualizarEmpleado(request):#actualizar 
+        id_empleado=request.POST['id_empleado']
+        nombre=request.POST['nombre']
+        apellidos=request.POST['apellidos']
+        email=request.POST['email']
+        telefono=request.POST['telefono']
+        empresa=request.POST['empresa']
+        # id_usuarios=request.POST['id_usuarios']
+        # id_empresa=request.POST['id_empresa']
+
+        empleados=Empleados.objects.get(id_empleado=id_empleado,)
+        empleados.nombre=nombre
+        empleados.apellidos=apellidos
+        empleados.email=email
+        empleados.telefono=telefono
+        empleados.empresa=empresa
+        empleados.save()
+
+        if(request.POST['empresa']=='admin'):
+            return redirect ('/consultarEmpleado/')
+        else:
+            detalleUsuario=Usuarios.objects.get(nombre_usuario=request.POST["id_usuarios"])
+            datos={"empleado":detalleUsuario,
+                "datosEmpleados":empleados,
+                "mensaje":{1:"Datos Actualizados"}}
+            
+            return render(request,"registroMovimientos.html", context=datos)
+
+
+    def eliminarEmpleado(request,id_empleado):
+        #usuario=Usuarios.objects.filter(id_usuarios=id_usuarios).values()
+        Empleados.objects.filter(id_empleado=id_empleado).delete()
+        return redirect ('/consultarEmpleado/')

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "../static/styles/frm.css" %}'>
+    <title>Actualizar Empleado</title>
+</head>
+
+<body>
+    <section class="sectiondos">
+        <fieldset class="fieldset">
+            <form action="/actualizarEmpleado/" method="POST" class="frm">
+                {%csrf_token%}
+                <legend>Actualizar Empleado</legend>
+
+                    <input type="hidden" id="doc" name="id_empleado" value="{{empleado.id_empleado}}" readonly>
+                </label>
+
+                <label for="nombre">Nombre 
+                    <input type="text" id="nombre" name="nombre" value="{{empleado.nombre}}">
+                </label>
+
+                <label for="nombre">apellidos
+                    <input type="text" id="imagen" name="apellidos" value="{{empleado.apellidos}}">
+                </label>
+
+                <label for="nombre_usuario">email
+                    <input type="text" id="nombre_usuario" name="email" value="{{empleado.email}}">
+                </label>
+
+                <label for="password">telefono
+                    <input type="text" id="password" name="telefono" value="{{empleado.telefono}}">
+                </label>
+
+                <input type="hidden" id="rol" name="empresa" value="admin">
+
+                
+
+                <!-- <td>Usuario</td>
+                <td>
+                    <select name="id_usuarios">
+                        Opciones de la lista
+                        {% for i in usuario %}
+                        <option value="{{i.id_usuarios}}" selected> {{i.nombre_usuario}}</option>  Opción por defecto
+                        {% endfor %}
+                    </select>
+                </td>
+                
+                <td>Empresa</td>
+                <td>
+                    <select name="id_empresa">
+                        Opciones de la lista
+                        {% for i in empresa %}
+                        <option value="{{i.id_empresa}}" selected> {{i.nombre}}</option> Opción por defecto
+                        {% endfor %}
+                    </select>
+                </td> -->
+
+                <input type="submit" value="Actualizar" class="button">
+            </form>
+
+        </fieldset>
+</body>
+
+</html>
