@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+{% load static%}
 
 <head>
-    {% load static%}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "../static/styles/registroMovimientos.css" %}'>
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<title>Administrador</title>
+	<link href='{% static "https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" %}'>
 
-    {% if request.session.nombre_usuario %}
-    <!-- <span>{{request.session.nombre_usuario}}</span>
-    <span>{{usuarios.id_usuarios}}</span>
-    <span>{{usuarios.nombre_usuario}}</span> -->
 
+	<link href='{% static "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"  %}'>
+	<link rel="stylesheet" href='{% static "../static/styles/admin.css" %}'>
+	{% if request.session.nombre_usuario %}
 </head>
 
 <body>
-    <h1>bienvenido señor admin {{usuarios.nombre_usuario}}</h1>
-    <a href="/formularioRegistro/">registrar Usuario</a>
-    <a href="/formularioRegistroEmpleado/">registrar Empledado</a>
-    <a href="/formularioRegistroEmpresa/">registrar Empresa</a>
-    <a href="/consultarUsuario/">Consultar usuario</a>
-    <a href="/consultarEmpresa/">Consultar Empresa</a>
-    <a href="/consultarEmpleado/">Consultar Empleado</a>
-    <a href="/consultarMovimientos/">Consultar Movimientos</a>
+	<!-- partial:index.partial.html -->
+	<div class="box-form">
+		<div class="left">
+			<div class="overlay">
+
+				<p>
+				<h2 align="center">Grupo 15</h2>
+				</p>
+				<p>
+				<h2 align="center">Bienvenido Señor Administrador {{usuarios.nombre_usuario}}</h2>
+				</p>
+			</div>
+		</div>
+
+
+		<div class="right" align="left">
+
+
+			<p><a href="/formularioRegistro/">Registrar Usuario</a></p>
+			<p><a href="/formularioRegistroEmpleado/">Registrar Empledado</a></p>
+			<p><a href="/formularioRegistroEmpresa/">Registrar Empresa</a></p>
+			<p><a href="/consultarUsuario/">Consultar usuario</a></p>
+			<p><a href="/consultarEmpresa/">Consultar Empresa</a></p>
+			<p><a href="/consultarEmpleado/">Consultar Empleado</a></p>
+			<p><a href="/consultarMovimientos/">Consultar Movimientos</a></p>
+
+
+		</div>
+
+	</div>
+	<!-- partial -->
 
 </body>
 {%endif%}
-
-
 </html>

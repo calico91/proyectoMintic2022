@@ -1,4 +1,13 @@
-
+body{
+    /*background-image: url("./Misión-TIC-2022-Universidad-Sergio-Arboleda.jpg") ;*/
+    /*background-color: rgb(rgb(54, 26, 99), green, blue);*/
+    background-image: linear-gradient(135deg,  #F0246A  10%,  #856B93 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Open Sans", sans-serif;
+    color: #20201f;
+  }
 
 .titulo{
     text-align: center;
@@ -7,13 +16,13 @@
     margin-top: 10px;
 }
 table{
-    background-color: black;
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
+    border: 1px solid  #5961f9ad;
 }
 
 table tr{
-    background-color: white;
+    background-color:  #5961f9ad;
 
 }

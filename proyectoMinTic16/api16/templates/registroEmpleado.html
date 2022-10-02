@@ -5,9 +5,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro Empleado</title>
-  <link rel="stylesheet" href='{% static "../static/styles/registroEmpresa.css" %}'>
-  <link rel="stylesheet" href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"%}'>
-  <link rel="stylesheet" href='{% static "https://fonts.googleapis.com/css?family=Tangerine"%}'>
+  <link rel="stylesheet" href='{% static "../static/styles/registroEmpresa.css"  %}'>
+  <link href='{% static "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"  %}'>
+  <link href='{% static "https://fonts.googleapis.com/css?family=Tangerine" %}'>
 </head>
 
 <body>
@@ -63,24 +63,24 @@
         </tr>
 
         <td>Usuario</td>
-                <td>
-                    <select name="id_usuarios">
-                        Opciones de la lista
-                        {% for i in usuario %}
-                        <option value="{{i.id_usuarios}}" selected> {{i.nombre_usuario}}</option>  Opción por defecto
-                        {% endfor %}
-                    </select>
-                </td>
-                
-                <td>Empresa</td>
-                <td>
-                    <select name="id_empresa">
-                        Opciones de la lista
-                        {% for i in empresa %}
-                        <option value="{{i.id_empresa}}" selected> {{i.nombre}}</option> Opción por defecto
-                        {% endfor %}
-                    </select>
-                </td>
+        <td>
+          <select name="id_usuarios">
+            Opciones de la lista
+            {% for i in usuario %}
+            <option value="{{i.id_usuarios}}" selected> {{i.nombre_usuario}}</option> Opción por defecto
+            {% endfor %}
+          </select>
+        </td>
+
+        <td>Empresa</td>
+        <td>
+          <select name="id_empresa">
+            Opciones de la lista
+            {% for i in empresa %}
+            <option value="{{i.id_empresa}}" selected> {{i.nombre}}</option> Opción por defecto
+            {% endfor %}
+          </select>
+        </td>
 
         <tr>
           <td><input type="hidden" name="empresa" value="empresa" />
@@ -89,7 +89,7 @@
         </tr>
 
     </table>
-    <div>
+    <div id="botones">
       <button type="submit" class="btn btn-primary">Crear</button>
     </div>
     </form>
