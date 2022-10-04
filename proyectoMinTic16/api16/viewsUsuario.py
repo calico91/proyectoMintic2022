@@ -74,7 +74,7 @@ class UsuarioViews(View):
                                 password=request.POST["password"],
                                 rol=request.POST["rol"])
 
-        return redirect('/usuario/')
+        return redirect('/consultarUsuario/')
 
     #metodo para loguear usuarios
     def login(request):
